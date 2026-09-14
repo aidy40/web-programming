@@ -1,1 +1,33 @@
-
+<!DOCTYPE html> 
+<html lang="en"> 
+<head><meta charset="UTF-8"><title>Web Programming FAQ</title></head> 
+<body> 
+<section id="faq"> 
+  <h2>Frequently Asked Questions</h2> 
+ 
+  <details open> 
+    <summary>What is a hyperlink?</summary> 
+    <p>A hyperlink is a clickable link that takes users to another 
+       webpage, file, or location within a page.</p> 
+  </details> 
+ 
+  <details> 
+    <summary>What is an HTML element?</summary> 
+    <p>An HTML element is a part of a webpage created using tags, 
+       such as headings, paragraphs, images, and links.</p> 
+  </details> 
+ 
+  <details> 
+    <summary>What is a CSS selector?</summary> 
+    <p>A CSS selector is used to choose which HTML elements should 
+       receive a particular style.</p> 
+  </details> 
+ 
+  <details> 
+    <summary>What is responsive web design?</summary> 
+    <p>Responsive web design makes websites adjust their layout 
+       to work well on different screen sizes and devices.</p> 
+  </details> 
+</section> 
+</body> 
+</html>
