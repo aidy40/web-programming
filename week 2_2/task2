@@ -1,1 +1,24 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Blog Post</title></head>
+<body>
+<article>
+  <header>
+    <h2>No Longer Human by Osamu Dazai</h2>
+    <p>By Chingun · <time datetime="2026-09-14">September 14, 2026</time></p>
+  </header>
+  <p><strong>No Longer Human</strong> is one of my favourite books by Osamu Dazai.
+     It tells the story of Yozo Oba, a man who struggles to connect with society
+     and feels like he does not truly belong.</p>
+  <p>I like this book because it explores loneliness, identity, and human relationships.
+     The story is <em>dark and emotional</em>, but it makes me think deeply about
+     how people hide their true feelings from others.</p>
+  <footer>
+    <p>Tags: Osamu Dazai · No Longer Human · Japanese Literature</p>
+  </footer>
+</article>
+</body>
+</html>
+```
 
