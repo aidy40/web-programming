@@ -1,1 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Inspirational Quotes</title></head>
+<body>
+  <h1>Quotes on Learning</h1>
 
+  <p>
+    As the saying goes,
+    <q>Education is the most powerful weapon which you can use to change the world.</q>
+  </p>
+
+  <blockquote>
+    <p>The beautiful thing about learning is that nobody can take it away from you.</p>
+    <footer>— <cite>B.B. King</cite>, musician</footer>
+  </blockquote>
+
+  <blockquote>
+    <p>Live as if you were to die tomorrow. Learn as if you were to live forever.</p>
+    <footer>— <cite>Mahatma Gandhi</cite>, Indian independence leader</footer>
+  </blockquote>
+
+  <details>
+    <summary>About these quotes</summary>
+    <p>These quotes were sourced from online collections of inspirational
+       sayings and educational resources. <abbr title="Internet">IT</abbr>
+       resources were used to learn more about the authors and their ideas.
+    </p>
+  </details>
+</body>
+</html>
