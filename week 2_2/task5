@@ -1,1 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chingun — Portfolio</title>
+</head>
+<body>
+  <header>
+    <h1>Chingun</h1>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <figure>
+        <img src="https://picsum.photos/200/200?random=25"
+             alt="Chingun, Computer Science student at Gachon University"
+             width="200" height="200">
+        <figcaption>Computer Science, Gachon University, Class of 2028</figcaption>
+      </figure>
+      <p>I am a <abbr title="Computer Science">CS</abbr> student at
+         Gachon University. I enjoy <mark>learning new languages</mark>,
+         reading, video editing, and cooking. I also enjoy playing
+         football, which has connected me with many people.</p>
+    </section>
+
+    <section id="projects">
+      <h2>My Projects</h2>
+      <article>
+        <header>
+          <h3>Personal Portfolio Website</h3>
+          <p>Completed: <time datetime="2026-09-14">September 2026</time></p>
+        </header>
+        <p>A personal portfolio website created using semantic
+           <code>HTML5</code> elements including <code>header</code>,
+           <code>main</code>, <code>article</code>, and <code>aside</code>.</p>
+      </article>
+    </section>
+
+    <aside id="skills" aria-label="Skills">
+      <h2>Skills</h2>
+      <ul>
+        <li>HTML5 &amp; Semantic markup</li>
+        <li>CSS basics</li>
+        <li>Video editing</li>
+        <li>Cooking</li>
+        <li>Learning new languages</li>
+      </ul>
+    </aside>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <address>
+        Gachon University<br>
+        Seongnam, Korea<br>
+        <a href="mailto:chingunmunguu@gmail.com">chingun@example.com</a>
+      </address>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Chingun · Web Programming · Gachon University</p>
+  </footer>
+</body>
+</html>
