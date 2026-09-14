@@ -1,1 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Competitive Gaming Continues to Grow — Gaming World News</title>
+</head>
+<body>
 
+  <header>
+    <h1>Gaming World News</h1>
+    <nav aria-label="Main navigation">
+      <a href="/">Home</a> · <a href="/gaming">Gaming</a> · <a href="/about">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h1><mark>Competitive Gaming</mark> Continues to Grow Around the World</h1>
+        <p>By the Gaming News Team ·
+           Published <time datetime="2026-09-14">September 14, 2026</time>
+        </p>
+      </header>
+
+      <figure>
+        <img src="https://picsum.photos/600/300?random=55"
+             alt="A gamer playing a competitive video game"
+             width="600" height="300">
+        <figcaption>Competitive gaming has become a major part of modern
+          gaming culture and entertainment.</figcaption>
+      </figure>
+
+      <section>
+        <h2>Background</h2>
+        <p>Video games have developed from simple single-player experiences
+           into large online communities. Games such as Counter-Strike,
+           League of Legends, and Valorant have helped competitive gaming
+           become popular around the world.</p>
+        <p>The growth of <abbr title="Electronic Sports">eSports</abbr> has
+           also created professional teams, tournaments, and streaming
+           careers. Faster internet connections and better gaming hardware
+           have made online competition more accessible.</p>
+      </section>
+
+      <blockquote cite="https://www.w3.org">
+        <p>Games bring people together through competition, creativity,
+           and shared experiences.</p>
+        <footer>— <cite>Gaming Community Research</cite></footer>
+      </blockquote>
+
+      <section>
+        <h2>Analysis</h2>
+        <p>Modern competitive games require players to improve their
+           reaction time, communication, and strategy. Players also adjust
+           settings such as <code>graphics</code>, sensitivity, and frame
+           rate to improve their performance.</p>
+        <p>With the growth of streaming platforms and professional
+           tournaments, <mark>gaming has become a major form of entertainment</mark>
+           for millions of people around the world.</p>
+      </section>
+
+      <aside aria-label="Key facts">
+        <h2>Key Facts</h2>
+        <ul>
+          <li>Competitive gaming is played professionally worldwide</li>
+          <li>Millions of players participate in online competitions</li>
+          <li>Gaming tournaments attract large audiences</li>
+          <li>Streaming has helped gaming reach new audiences</li>
+        </ul>
+      </aside>
+
+      <footer>
+        <p>Tags: Gaming · eSports · Competitive Gaming · Technology</p>
+      </footer>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Gaming World News · Web Programming K0126002</p>
+  </footer>
+
+</body>
+</html>
