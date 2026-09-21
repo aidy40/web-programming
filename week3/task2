@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 
+<style>
+  .card {
+    width: 280px;
+    height: 180px;
+    background: white;
+    border: 2px solid #6366f1;
+    border-radius: 12px;
+    margin: 40px;
+    padding: 20px;
+    box-sizing: border-box;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(99, 102, 241, 0.35);
+  }
+</style>
+
+</head>
+
+<body>
+
+  <div class="card">
+    <h3>Hover Me</h3>
+    <p>This card lifts up when you hover.</p>
+  </div>
+
+</body>
+</html>
