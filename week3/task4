@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 
+<style>
+  :root {
+    --primary: #2563eb;
+    --accent: #14b8a6;
+    --bg: #f0fdfa;
+    --text: #1e293b;
+    --radius: 12px;
+    --spacing: 16px;
+  }
+
+  body {
+    margin: 0;
+    padding: var(--spacing);
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+  }
+
+  .card {
+    background: var(--bg);
+    border: 2px solid var(--primary);
+    border-radius: var(--radius);
+    padding: var(--spacing);
+    margin-bottom: var(--spacing);
+  }
+
+  .button {
+    background: var(--primary);
+    color: var(--bg);
+    border: none;
+    border-radius: var(--radius);
+    padding: var(--spacing);
+  }
+
+  .button:hover {
+    background: var(--accent);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --primary: #60a5fa;
+      --accent: #2dd4bf;
+      --bg: #0f172a;
+      --text: #f1f5f9;
+    }
+  }
+</style>
+
+</head>
+
+<body>
+
+  <div class="card">
+    <h2>CSS Variables</h2>
+    <p>This page uses CSS custom properties for its colors and spacing.</p>
+    <button class="button">Click Me</button>
+  </div>
+
+</body>
+</html>
