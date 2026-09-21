@@ -1,1 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 
+<style>
+  :root {
+    --primary: #0f766e;
+    --accent: #14b8a6;
+    --bg: #f0fdfa;
+    --card-bg: white;
+    --text: #1e293b;
+    --radius: 12px;
+    --space: 16px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 30px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space);
+  }
+
+  .card {
+    position: relative;
+    background: var(--card-bg);
+    border: 2px solid var(--primary);
+    border-radius: var(--radius);
+    padding: 30px var(--space);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card::before {
+    content: "⭐";
+    display: block;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(20, 184, 166, 0.3);
+  }
+
+  @media (min-width: 640px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --primary: #2dd4bf;
+      --accent: #5eead4;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f1f5f9;
+    }
+  }
+</style>
+
+</head>
+
+<body>
+
+  <h1>My Cards</h1>
+
+  <div class="grid">
+
+    <div class="card">
+      <h2>Card One</h2>
+      <p>This is the first card.</p>
+    </div>
+
+    <div class="card">
+      <h2>Card Two</h2>
+      <p>This is the second card.</p>
+    </div>
+
+    <div class="card">
+      <h2>Card Three</h2>
+      <p>This is the third card.</p>
+    </div>
+
+  </div>
+
+</body>
+</html>
