@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Click Counter</title>
 
+  <style>
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+    }
+
+    .done {
+      background-color: green;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="clickButton">Click me!</button>
+
+  <p>Clicks: <span id="counter">0</span></p>
+  <p id="message"></p>
+
+  <script>
+    // Select the button with querySelector
+    const button = document.querySelector('#clickButton');
+
+    let clicks = 0;
+
+    // Add click event listener
+    button.addEventListener('click', function() {
+      clicks++;
+
+      // Update counter text with textContent
+      document.querySelector('#counter').textContent = clicks;
+
+      // After 5 clicks
+      if (clicks === 5) {
+        button.classList.add('done');
+        document.querySelector('#message').textContent =
+          'Congratulations! You clicked 5 times!';
+      }
+    });
+  </script>
+
+</body>
+</html>
