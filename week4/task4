@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Search</title>
 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 50px auto;
+    }
+
+    #search {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .student {
+      padding: 12px;
+      margin-top: 8px;
+      background: #eee;
+      border-radius: 5px;
+    }
+
+    mark {
+      background-color: yellow;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Student Search</h1>
+
+  <input
+    id="search"
+    type="text"
+    placeholder="Search for a student..."
+  >
+
+  <div class="student">Chingun</div>
+  <div class="student">John</div>
+  <div class="student">Sarah</div>
+  <div class="student">Michael</div>
+  <div class="student">David</div>
+  <div class="student">Jennifer</div>
+
+  <script>
+    const searchBox = document.querySelector('#search');
+
+    searchBox.addEventListener('input', function(e) {
+      // Get the search term
+      const term = e.target.value.toLowerCase();
+
+      // Get all student rows
+      const students = document.querySelectorAll('.student');
+
+      // Check each student
+      students.forEach(function(student) {
+        const name = student.textContent;
+        const lowerName = name.toLowerCase();
+
+        if (lowerName.includes(term)) {
+          // Show the student
+          student.style.display = 'block';
+
+          // BONUS: Highlight matching text
+          if (term !== '') {
+            const index = lowerName.indexOf(term);
+
+            const before = name.substring(0, index);
+            const match = name.substring(index, index + term.length);
+            const after = name.substring(index + term.length);
+
+            student.innerHTML =
+              before + '<mark>' + match + '</mark>' + after;
+          } else {
+            student.textContent = name;
+          }
+
+        } else {
+          // Hide the student
+          student.style.display = 'none';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
