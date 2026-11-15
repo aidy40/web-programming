@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manga Library - Defer vs Async</title>
+
+  <script src="./app.js" defer></script>
+  <script src="./analytics.js" async></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 750px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #151525;
+      color: #f1f1f1;
+      line-height: 1.6;
+    }
+
+    h1 {
+      color: #a78bfa;
+    }
+
+    h3 {
+      color: #c4b5fd;
+    }
+
+    .intro {
+      color: #aaaac2;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: #23233a;
+      padding: 22px;
+      margin: 16px 0;
+      border-radius: 12px;
+      border: 1px solid #393957;
+    }
+
+    .defer {
+      border-left: 5px solid #7c3aed;
+    }
+
+    .async {
+      border-left: 5px solid #a78bfa;
+    }
+
+    .result {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #aaaac2;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 20px;
+      background: #39256b;
+      color: #c4b5fd;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Manga Library</h1>
+  <p class="intro">JavaScript Loading Performance Comparison</p>
+
+  <div class="card defer">
+    <span class="tag">Method 01</span>
+    <h3>DEFER - Main Application</h3>
+    <p id="app-status" class="result">
+      Waiting for the main application script...
+    </p>
+  </div>
+
+  <div class="card async">
+    <span class="tag">Method 02</span>
+    <h3>ASYNC - Analytics</h3>
+    <p id="analytics-status" class="result">
+      Waiting for the analytics script...
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Understanding the Difference</h3>
+
+    <p class="result">
+      <strong>Defer:</strong> Downloads the script while HTML is being
+      parsed, but executes it after HTML parsing is complete.
+    </p>
+
+    <p class="result">
+      <strong>Async:</strong> Downloads the script while HTML is being
+      parsed and executes it as soon as the download finishes.
+      It does not wait for HTML parsing to finish.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Why Does It Matter?</h3>
+    <p class="result">
+      Choosing the correct script loading method can improve website
+      performance and help the Manga Library load more efficiently.
+      Defer is useful for scripts that depend on the page structure,
+      while async is suitable for independent scripts.
+    </p>
+  </div>
+
+  <script>
+    window.addEventListener("load", () => {
+      const status = document.getElementById("analytics-status");
+
+      if (window.analyticsExecutionState) {
+        status.textContent =
+          "The async script executed when the document state was: " +
+          window.analyticsExecutionState + ".";
+      } else {
+        status.textContent =
+          "The analytics script could not be loaded. Check its file path.";
+      }
+    });
+  </script>
+
+</body>
+</html>
