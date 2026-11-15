@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manga Library - Input Verification</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #151525;
+      color: #f1f1f1;
+    }
+
+    .container {
+      background: #23233a;
+      padding: 30px;
+      border: 1px solid #393957;
+      border-radius: 14px;
+    }
+
+    h1 {
+      color: #c4b5fd;
+      text-align: center;
+    }
+
+    p {
+      color: #aaaac2;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin: 16px 0 7px;
+      color: #ddd6fe;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 11px;
+      border: 1px solid #393957;
+      border-radius: 8px;
+      background: #151525;
+      color: white;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+    }
+
+    input:valid:not(:placeholder-shown) {
+      border-color: #22c55e;
+      background: #172b27;
+    }
+
+    input:invalid:not(:placeholder-shown) {
+      border-color: #ef4444;
+      background: #302024;
+    }
+
+    button {
+      margin-top: 24px;
+      padding: 12px 18px;
+      width: 100%;
+      background: #7c3aed;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #6d28d9;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Account Verification</h1>
+    <p>Check your information before joining Manga Library.</p>
+
+    <form method="post" action="#">
+
+      <label for="member-id">Library Member Number</label>
+      <input
+        type="text"
+        id="member-id"
+        name="member_id"
+        pattern="[0-9]{8}"
+        title="Enter exactly 8 digits"
+        placeholder="12345678"
+        required
+      >
+
+      <label for="email">Contact Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="reader@example.com"
+        required
+      >
+
+      <label for="password">Account Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        minlength="10"
+        placeholder="Minimum 10 characters"
+        required
+      >
+
+      <button type="submit">Verify Information</button>
+
+    </form>
+
+  </div>
+
+</body>
+</html>
