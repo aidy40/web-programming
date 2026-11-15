@@ -1,97 +1,62 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chingun's API Workspace</title>
+  <title>JSONPlaceholder</title>
 
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #151525;
-      color: #f1f1f1;
+      background: #f5f5f5;
+      color: #1e293b;
       max-width: 800px;
       margin: auto;
       padding: 25px;
     }
 
-    h1 {
-      color: #a78bfa;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    h2 {
-      color: #c4b5fd;
-    }
-
-    h3 {
-      color: #ddd6fe;
-    }
-
     section {
-      background: #23233a;
-      padding: 20px;
-      margin-bottom: 20px;
-      border: 1px solid #393957;
-      border-radius: 12px;
-      transition: 0.3s;
+      background: white;
+      padding: 18px;
+      margin-bottom: 18px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
     }
 
-    section:hover {
-      border-color: #a78bfa;
+    h1, h2 {
+      color: #0f766e;
     }
 
     input, textarea, button {
-      padding: 10px;
-      margin: 5px 0;
+      padding: 9px;
+      margin: 4px 0;
       font: inherit;
-      border-radius: 6px;
     }
 
     input, textarea {
       box-sizing: border-box;
       width: 100%;
-      background: #151525;
-      color: white;
-      border: 1px solid #555577;
     }
 
     textarea {
-      min-height: 110px;
+      min-height: 100px;
       resize: vertical;
-    }
-
-    input:focus, textarea:focus {
-      outline: 2px solid #a78bfa;
-      border-color: #a78bfa;
     }
 
     button {
       cursor: pointer;
-      background: #7c3aed;
-      color: white;
-      border: none;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background: #a78bfa;
-      color: #151525;
     }
 
     .todo {
       display: flex;
       align-items: center;
       gap: 8px;
-      border-bottom: 1px solid #393957;
+      border-bottom: 1px solid #eee;
       padding: 8px 0;
     }
 
     .todo input[type="checkbox"] {
       width: auto;
-      accent-color: #a78bfa;
     }
 
     .todo input[type="text"] {
@@ -101,58 +66,32 @@
 
     .completed {
       text-decoration: line-through;
-      color: #8888a5;
+      color: #64748b;
     }
 
     .status {
-      color: #a78bfa;
+      color: #0f766e;
     }
 
     a {
-      color: #c4b5fd;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .subtitle {
-      text-align: center;
-      color: #aaaac2;
-      margin-bottom: 30px;
-    }
-
-    @media (max-width: 500px) {
-      body {
-        padding: 15px;
-      }
-
-      .todo {
-        gap: 5px;
-      }
-
-      .todo button {
-        padding: 8px;
-      }
+      color: #0f766e;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>Chingun's API Workspace</h1>
-  <p class="subtitle">JavaScript Fetch API & Async Programming</p>
+  <h1>JSONPlaceholder</h1>
 
   <section>
-    <h2>1. User Profile</h2>
+    <h2>Post Author</h2>
     <p id="userStatus">Loading user...</p>
     <div id="user"></div>
-    <button onclick="loadUser(true)">Generate Another User</button>
+    <button onclick="loadUser(true)">Random User</button>
   </section>
 
   <section>
-    <h2>2. Edit My Blog Post</h2>
+    <h2>Edit Blog Post</h2>
 
     <label for="postTitle">Post Title</label>
     <input type="text" id="postTitle">
@@ -160,43 +99,43 @@
     <label for="postBody">Post Content</label>
     <textarea id="postBody"></textarea>
 
-    <button onclick="savePost()">Save Changes</button>
+    <button onclick="savePost()">Save Post</button>
     <p id="postStatus" class="status"></p>
 
-    <h2>Blog Preview</h2>
+    <h2>Post Preview</h2>
     <h3 id="previewTitle"></h3>
     <p id="previewAuthor"></p>
     <p id="previewBody"></p>
   </section>
 
   <section>
-    <h2>3. My Daily Tasks</h2>
-    <p>Manage your tasks by checking, editing, or deleting them.</p>
+    <h2>My Todos</h2>
+    <p>Check off tasks, edit their names, or remove them.</p>
 
-    <input type="text" id="newTodo" placeholder="Write a new task">
-    <button onclick="addTodo()">Add Task</button>
+    <input type="text" id="newTodo" placeholder="Enter a new task">
+    <button onclick="addTodo()">Add Todo</button>
 
     <div id="todos"></div>
     <p id="todoStatus" class="status"></p>
   </section>
 
-  <p><a href="index.html">← Back to Week 6</a></p>
+  <p><a href="index.html">Back to Week 6</a></p>
 
   <script>
     let currentUser = null;
 
-    let todos = JSON.parse(localStorage.getItem('chingunTodos') || 'null') || [
-      { text: 'Study JavaScript functions', completed: false },
-      { text: 'Practice working with APIs', completed: false },
-      { text: 'Complete Week 6 assignment', completed: false }
+    let todos = JSON.parse(localStorage.getItem('week6Todos') || 'null') || [
+      { text: 'Practice JavaScript fetch()', completed: false },
+      { text: 'Learn async and await', completed: false },
+      { text: 'Finish my web programming assignment', completed: false }
     ];
 
     document.getElementById('postTitle').value =
-      localStorage.getItem('chingunPostTitle') || 'My Programming Journey';
+      localStorage.getItem('week6PostTitle') || 'My Week 6 Learning Journey';
 
     document.getElementById('postBody').value =
-      localStorage.getItem('chingunPostBody') ||
-      'Hello! My name is Chingun. I am learning JavaScript, Fetch API, async and await. This project helps me understand how websites communicate with external APIs.';
+      localStorage.getItem('week6PostBody') ||
+      'Today I practiced JavaScript and learned how to fetch data from an API. I also learned how to work with users, edit content, and manage a todo list.';
 
     function updatePreview() {
       document.getElementById('previewTitle').textContent =
@@ -206,15 +145,15 @@
         document.getElementById('postBody').value;
 
       document.getElementById('previewAuthor').textContent =
-        currentUser ? 'Created by ' + currentUser.name : 'Loading author...';
+        currentUser ? 'Written by ' + currentUser.name : 'Loading author...';
     }
 
     async function loadUser(randomize) {
       let id = randomize
-        ? Math.floor(Math.random() * 5) + 1
-        : Number(localStorage.getItem('chingunUserId')) || 2;
+        ? Math.floor(Math.random() * 10) + 1
+        : Number(localStorage.getItem('week6UserId')) || 1;
 
-      document.getElementById('userStatus').textContent = 'Loading profile...';
+      document.getElementById('userStatus').textContent = 'Loading user...';
 
       try {
         const res = await fetch(
@@ -227,7 +166,7 @@
 
         currentUser = await res.json();
 
-        localStorage.setItem('chingunUserId', currentUser.id);
+        localStorage.setItem('week6UserId', currentUser.id);
 
         document.getElementById('user').textContent = '';
 
@@ -245,35 +184,34 @@
         document.getElementById('user').appendChild(email);
 
         document.getElementById('userStatus').textContent =
-          'Profile successfully loaded!';
+          'User profile loaded from JSONPlaceholder.';
 
         updatePreview();
-
       } catch (error) {
         document.getElementById('userStatus').textContent =
-          'Unable to load profile. Please try again.';
+          'Could not load a user. Please try again.';
       }
     }
 
     function savePost() {
       localStorage.setItem(
-        'chingunPostTitle',
+        'week6PostTitle',
         document.getElementById('postTitle').value
       );
 
       localStorage.setItem(
-        'chingunPostBody',
+        'week6PostBody',
         document.getElementById('postBody').value
       );
 
       updatePreview();
 
       document.getElementById('postStatus').textContent =
-        'Your blog post has been saved!';
+        'Post saved in this browser.';
     }
 
     function saveTodos() {
-      localStorage.setItem('chingunTodos', JSON.stringify(todos));
+      localStorage.setItem('week6Todos', JSON.stringify(todos));
     }
 
     function showTodos() {
@@ -319,14 +257,13 @@
         row.appendChild(checkbox);
         row.appendChild(text);
         row.appendChild(remove);
-
         output.appendChild(row);
       }
 
       let completed = todos.filter(todo => todo.completed).length;
 
       document.getElementById('todoStatus').textContent =
-        completed + ' / ' + todos.length + ' tasks completed.';
+        completed + ' of ' + todos.length + ' tasks completed.';
     }
 
     function addTodo() {
@@ -337,11 +274,7 @@
         return;
       }
 
-      todos.push({
-        text: text,
-        completed: false
-      });
-
+      todos.push({ text: text, completed: false });
       input.value = '';
 
       saveTodos();
@@ -360,7 +293,6 @@
     showTodos();
     updatePreview();
     loadUser(false);
-
   </script>
 
 </body>
