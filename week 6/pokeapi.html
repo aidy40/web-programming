@@ -1,226 +1,185 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chingun's Yu-Gi-Oh! Card Database</title>
+  <title>PokéAPI</title>
 
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #151525;
-      color: #f1f1f1;
+      background: #f5f5f5;
+      color: #1e293b;
       max-width: 750px;
       margin: auto;
       padding: 25px;
     }
 
-    h1, h2 {
-      color: #a78bfa;
-    }
-
     section {
-      background: #23233a;
-      padding: 20px;
-      margin-bottom: 18px;
-      border: 1px solid #393957;
-      border-radius: 12px;
+      background: white;
+      padding: 18px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
     }
 
-    input {
-      padding: 11px;
-      margin: 5px;
-      border: 1px solid #555577;
-      border-radius: 6px;
-      background: #151525;
-      color: white;
+    h1, h2 {
+      color: #0f766e;
+    }
+
+    button, input {
+      padding: 8px;
+      margin: 4px;
     }
 
     button {
-      padding: 11px 16px;
-      margin: 5px;
-      background: #7c3aed;
-      color: white;
-      border: none;
-      border-radius: 6px;
       cursor: pointer;
-      transition: 0.2s;
-    }
-
-    button:hover {
-      background: #6d28d9;
-      transform: translateY(-2px);
     }
 
     img {
-      width: 220px;
-      max-width: 100%;
-      display: block;
-      margin: 15px auto;
-      border-radius: 8px;
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
     }
 
-    #name {
-      text-align: center;
-      font-size: 25px;
+    table {
+      width: 100%;
+      border-collapse: collapse;
     }
 
-    #status {
-      color: #c4b5fd;
-      margin-top: 12px;
-    }
-
-    .info-item {
-      background: #2e2e49;
-      padding: 10px;
-      border-radius: 6px;
-      margin: 8px 0;
-    }
-
-    .description {
-      line-height: 1.6;
-      background: #2e2e49;
-      padding: 14px;
-      border-radius: 8px;
+    th, td {
+      padding: 8px;
+      border: 1px solid #ddd;
+      text-align: left;
     }
 
     a {
-      color: #a78bfa;
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: #c4b5fd;
-      text-decoration: underline;
+      color: #0f766e;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>Chingun's Yu-Gi-Oh! Database</h1>
-  <p>Search and explore cards from the Yu-Gi-Oh! trading card game.</p>
+  <h1>PokéAPI</h1>
+  <p>Search the Pokémon database by name or Pokédex number.</p>
 
   <section>
-    <h2>Card Search</h2>
+    <input type="text" id="pokemonInput" placeholder="Pikachu or 25">
+    <button onclick="searchPokemon()">Search</button>
+    <button onclick="randomPokemon()">Random Pokémon</button>
 
-    <input
-      type="text"
-      id="cardInput"
-      placeholder="Enter card name..."
-    >
-
-    <button onclick="searchCard()">Search</button>
-    <button onclick="randomCard()">Random Card</button>
-
-    <p id="status">Search for your favorite Yu-Gi-Oh! card!</p>
+    <p id="status"></p>
   </section>
 
   <section id="details" hidden>
-
     <h2 id="name"></h2>
+    <img id="sprite" alt="Pokémon image">
 
-    <img id="cardImage" alt="Yu-Gi-Oh! card artwork">
+    <p id="types"></p>
+    <p id="height"></p>
+    <p id="weight"></p>
+    <p id="abilities"></p>
 
-    <div id="cardInfo"></div>
+    <h2>Base Stats</h2>
 
-    <h2>Card Description</h2>
-    <p id="description" class="description"></p>
-
+    <table>
+      <thead>
+        <tr>
+          <th>Stat</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody id="stats"></tbody>
+    </table>
   </section>
 
-  <p>
-    <a href="index.html">← Back to Week 6</a>
-  </p>
+  <p><a href="index.html">Back to Week 6</a></p>
 
   <script>
-    async function searchCard() {
-      let value = document.getElementById('cardInput')
-        .value.trim();
+    async function searchPokemon() {
+      let value = document.getElementById('pokemonInput').value.trim().toLowerCase();
 
       if (value === '') {
         document.getElementById('status').textContent =
-          'Please enter a card name.';
+          'Enter a Pokémon name or number.';
         return;
       }
 
-      await loadCard(value);
+      await loadPokemon(value);
     }
 
-    async function loadCard(value) {
+    async function loadPokemon(value) {
       let status = document.getElementById('status');
       let details = document.getElementById('details');
 
-      status.textContent = 'Searching for card...';
+      status.textContent = 'Loading Pokémon...';
       details.hidden = true;
 
       try {
         const res = await fetch(
-          'https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=' +
-          encodeURIComponent(value)
+          'https://pokeapi.co/api/v2/pokemon/' + encodeURIComponent(value)
         );
 
         if (!res.ok) {
-          throw new Error('Card not found');
+          throw new Error('Pokémon not found');
         }
 
         const data = await res.json();
 
-        if (!data.data || data.data.length === 0) {
-          throw new Error('Card not found');
-        }
-
-        let card = data.data[0];
-
         document.getElementById('name').textContent =
-          card.name;
+          '#' + data.id + ' ' +
+          data.name.charAt(0).toUpperCase() + data.name.slice(1);
 
-        document.getElementById('cardImage').src =
-          card.card_images[0].image_url;
+        let sprite = data.sprites.other['official-artwork'].front_default
+          || data.sprites.front_default;
 
-        document.getElementById('description').textContent =
-          card.desc;
+        document.getElementById('sprite').src = sprite || '';
+        document.getElementById('types').textContent =
+          'Types: ' + data.types.map(item => item.type.name).join(', ');
 
-        let info = document.getElementById('cardInfo');
-        info.textContent = '';
+        document.getElementById('height').textContent =
+          'Height: ' + data.height / 10 + ' m';
 
-        let cardDetails = [
-          ['Card Type', card.type],
-          ['Race', card.race],
-          ['Attribute', card.attribute || 'Not applicable'],
-          ['Level / Rank', card.level || 'Not applicable'],
-          ['ATK', card.atk !== undefined ? card.atk : 'Not applicable'],
-          ['DEF', card.def !== undefined ? card.def : 'Not applicable']
-        ];
+        document.getElementById('weight').textContent =
+          'Weight: ' + data.weight / 10 + ' kg';
 
-        for (let item of cardDetails) {
-          let div = document.createElement('div');
-          div.className = 'info-item';
+        document.getElementById('abilities').textContent =
+          'Abilities: ' + data.abilities
+            .map(item => item.ability.name)
+            .join(', ');
 
-          div.textContent = item[0] + ': ' + item[1];
+        let stats = document.getElementById('stats');
+        stats.textContent = '';
 
-          info.appendChild(div);
+        for (let item of data.stats) {
+          let row = document.createElement('tr');
+          let statName = document.createElement('td');
+          let statValue = document.createElement('td');
+
+          statName.textContent = item.stat.name;
+          statValue.textContent = item.base_stat;
+
+          row.appendChild(statName);
+          row.appendChild(statValue);
+          stats.appendChild(row);
         }
 
-        status.textContent = 'Card successfully loaded!';
+        status.textContent = 'Pokémon loaded!';
         details.hidden = false;
-
       } catch (error) {
         status.textContent =
-          'Card not found or API unavailable. Try another card name.';
+          'Pokémon not found or the API is unavailable. Try another name or number.';
       }
     }
 
-    async function randomCard() {
+    async function randomPokemon() {
       let status = document.getElementById('status');
-
-      status.textContent = 'Finding a random card...';
+      status.textContent = 'Finding a random Pokémon...';
 
       try {
         const res = await fetch(
-          'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=1&offset=' +
-          Math.floor(Math.random() * 1000)
+          'https://pokeapi.co/api/v2/pokemon?limit=1'
         );
 
         if (!res.ok) {
@@ -228,28 +187,23 @@
         }
 
         const data = await res.json();
+        let id = Math.floor(Math.random() * data.count) + 1;
 
-        let card = data.data[0];
-
-        document.getElementById('cardInput').value =
-          card.name;
-
-        await loadCard(card.name);
-
+        document.getElementById('pokemonInput').value = id;
+        await loadPokemon(id);
       } catch (error) {
         status.textContent =
-          'Could not find a random card. Please try again.';
+          'Could not get a random Pokémon. Please try again.';
       }
     }
 
-    document.getElementById('cardInput')
-      .addEventListener('keydown', event => {
-        if (event.key === 'Enter') {
-          searchCard();
-        }
-      });
+    document.getElementById('pokemonInput').addEventListener('keydown', event => {
+      if (event.key === 'Enter') {
+        searchPokemon();
+      }
+    });
 
-    loadCard('Dark Magician');
+    loadPokemon('pikachu');
   </script>
 
 </body>
