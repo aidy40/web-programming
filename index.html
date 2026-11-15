@@ -5,444 +5,877 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <title>Web Programming</title>
+  <title>Web Programming | Chingun</title>
 
   <style>
     :root {
       color-scheme: light;
-      --page-bg: #f0fdfa;
-      --card-bg: #ffffff;
-      --inner-bg: #f8fafc;
-      --text: #1e293b;
-      --muted: #64748b;
-      --heading: #0f766e;
-      --accent: #0f766e;
-      --accent-hover: #115e59;
-      --border: #e2e8f0;
-      --shadow: 0 4px 18px rgba(15, 23, 42, 0.06);
+      --bg: #f4f6fb;
+      --surface: #ffffff;
+      --surface-alt: #edf1f8;
+      --text: #17233c;
+      --muted: #68758c;
+      --heading: #172e55;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --highlight: #f59e0b;
+      --border: #dfe5ef;
+      --shadow: 0 12px 35px rgba(25, 45, 80, 0.07);
+      --hero-bg: #172e55;
+      --hero-text: #ffffff;
       --input-bg: #ffffff;
     }
 
     body.dark-mode {
       color-scheme: dark;
-      --page-bg: #151525;
-      --card-bg: #23233a;
-      --inner-bg: #1b1b30;
-      --text: #f1f1f1;
-      --muted: #aaaac2;
-      --heading: #c4b5fd;
-      --accent: #7c3aed;
-      --accent-hover: #a78bfa;
-      --border: #393957;
-      --shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
-      --input-bg: #1b1b30;
+      --bg: #101827;
+      --surface: #192438;
+      --surface-alt: #222f46;
+      --text: #edf2fc;
+      --muted: #a5b2c8;
+      --heading: #e4edff;
+      --accent: #60a5fa;
+      --accent-hover: #93c5fd;
+      --highlight: #fbbf24;
+      --border: #30405a;
+      --shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+      --hero-bg: #1c2e4b;
+      --hero-text: #ffffff;
+      --input-bg: #142035;
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
+      margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background-color: var(--page-bg);
+      background: var(--bg);
       color: var(--text);
-      margin: 0;
       line-height: 1.65;
-      transition: background-color 0.25s, color 0.25s;
-    }
-
-    .container {
-      max-width: 960px;
-      margin: 40px auto;
-      padding: 20px;
-    }
-
-    header {
-      position: relative;
-      background-color: var(--card-bg);
-      padding: 38px;
-      padding-right: 150px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      margin-bottom: 25px;
-    }
-
-    h1 {
-      color: var(--heading);
-      margin: 0 0 8px;
-      font-size: 2rem;
-    }
-
-    header p {
-      color: var(--muted);
-      margin: 0;
-    }
-
-    h2 {
-      color: var(--heading);
-      margin-top: 0;
-      margin-bottom: 20px;
-    }
-
-    h3 {
-      color: var(--heading);
-      margin-top: 0;
-    }
-
-    .theme-toggle {
-      position: absolute;
-      top: 30px;
-      right: 30px;
-      padding: 10px 15px;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      background: var(--inner-bg);
-      color: var(--text);
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.2s, border-color 0.2s;
-    }
-
-    .theme-toggle:hover {
-      border-color: var(--accent);
-    }
-
-    .info {
-      display: flex;
-      gap: 16px;
-      margin-bottom: 25px;
-    }
-
-    .info div {
-      flex: 1;
-      background-color: var(--card-bg);
-      padding: 22px;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      box-shadow: var(--shadow);
-    }
-
-    .info strong {
-      color: var(--heading);
-    }
-
-    .info p {
-      margin: 8px 0 0;
-    }
-
-    .materials,
-    .contact-section,
-    .team-project-section {
-      background-color: var(--card-bg);
-      padding: 28px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      margin-bottom: 25px;
+      transition: background 0.25s, color 0.25s;
     }
 
     a {
       color: var(--accent);
       text-decoration: none;
-      font-weight: bold;
-      transition: color 0.2s;
     }
 
     a:hover {
       color: var(--accent-hover);
-      text-decoration: underline;
     }
 
-    .materials > p {
-      margin: 10px 0;
+    button,
+    input,
+    textarea {
+      font: inherit;
     }
 
-    .lecture-assignments {
-      margin-top: 30px;
-      padding-top: 22px;
-      border-top: 1px solid var(--border);
+    .container {
+      width: min(1080px, calc(100% - 36px));
+      margin: 0 auto;
     }
 
-    .lecture-assignments h3 {
-      margin: 20px 0 6px;
+    /* Navigation */
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 0;
+      gap: 20px;
     }
 
-    .lecture-assignments h3:first-child {
-      margin-top: 0;
+    .brand {
+      color: var(--heading);
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
     }
 
-    .lecture-assignments p {
-      margin: 6px 0;
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-link {
       color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
     }
 
-    .team-project-card,
-    .proposal-card {
-      background-color: var(--inner-bg);
-      padding: 26px;
+    .nav-link:hover {
+      color: var(--accent);
+    }
+
+    .theme-toggle {
+      padding: 9px 14px;
       border: 1px solid var(--border);
-      border-radius: 13px;
-      margin-top: 22px;
-    }
-
-    .team-project-card h3,
-    .proposal-card h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
-    }
-
-    .team-project-card p,
-    .proposal-card p {
-      line-height: 1.7;
-      color: var(--muted);
-    }
-
-    .project-link {
-      display: inline-block;
-      margin-top: 8px;
-    }
-
-    .presentation-viewer {
-      width: 100%;
-      margin-top: 20px;
-      overflow: hidden;
       border-radius: 9px;
-      border: 1px solid var(--border);
-      background-color: #151525;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
     }
 
-    .presentation-viewer iframe {
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* Hero */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--hero-bg);
+      color: var(--hero-text);
+      border-radius: 22px;
+      padding: 65px 55px;
+      margin: 12px 0 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border: 45px solid rgba(255, 255, 255, 0.06);
+      border-radius: 50%;
+      right: -65px;
+      top: -100px;
+      pointer-events: none;
+    }
+
+    .hero-label {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.12);
+      color: #bfdbfe;
+      padding: 7px 13px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      max-width: 650px;
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      margin: 0 0 16px;
+    }
+
+    .hero h1 span {
+      color: #fbbf24;
+    }
+
+    .hero p {
+      max-width: 570px;
+      color: #cbd5e1;
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .hero-button {
+      display: inline-block;
+      margin-top: 27px;
+      background: #f59e0b;
+      color: #17233c;
+      padding: 12px 20px;
+      border-radius: 9px;
+      font-weight: 800;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .hero-button:hover {
+      background: #fbbf24;
+      color: #17233c;
+      transform: translateY(-2px);
+    }
+
+    /* Section headings */
+
+    .section {
+      margin: 42px 0;
+      scroll-margin-top: 20px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin: 0 0 5px;
+    }
+
+    h2 {
+      color: var(--heading);
+      font-size: 25px;
+      letter-spacing: -0.5px;
+      margin: 0;
+    }
+
+    .section-description {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 5px 0 0;
+    }
+
+    /* Student profile */
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 15px;
+    }
+
+    .profile-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 23px;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-card.primary {
+      border-top: 4px solid var(--accent);
+    }
+
+    .profile-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      background: var(--surface-alt);
+      border-radius: 10px;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .profile-card strong {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .profile-card p {
+      margin: 0;
+      color: var(--heading);
+      font-weight: 800;
+      font-size: 17px;
+    }
+
+    .profile-card .student-id {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* Course cards */
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .course-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 17px 18px;
+      color: var(--heading);
+      font-weight: 700;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .course-card:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .course-number {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .course-arrow {
+      color: var(--accent);
+      font-size: 18px;
+    }
+
+    /* Assignment cards */
+
+    .assignment-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .assignment-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .assignment-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+
+    .assignment-tag {
+      display: inline-block;
+      color: var(--accent);
+      background: var(--surface-alt);
+      border-radius: 6px;
+      padding: 5px 9px;
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .assignment-card h3 {
+      color: var(--heading);
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .assignment-card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0 0 18px;
+    }
+
+    .card-link {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    /* General panels */
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      padding: 27px;
+      box-shadow: var(--shadow);
+      margin-bottom: 17px;
+    }
+
+    .panel h3 {
+      color: var(--heading);
+      margin: 0 0 9px;
+      font-size: 19px;
+    }
+
+    .panel p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 17px;
+    }
+
+    .project-button {
+      display: inline-block;
+      padding: 10px 15px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: white;
+      font-size: 13px;
+      font-weight: 800;
+      transition: 0.2s;
+    }
+
+    .project-button:hover {
+      background: var(--accent-hover);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .project-button.secondary {
+      background: var(--surface-alt);
+      color: var(--accent);
+      border: 1px solid var(--border);
+    }
+
+    .project-button.secondary:hover {
+      border-color: var(--accent);
+    }
+
+    .media-frame {
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #101827;
+      margin-top: 18px;
+    }
+
+    .media-frame iframe {
       display: block;
       width: 100%;
-      height: 560px;
-      border: none;
+      height: 540px;
+      border: 0;
     }
 
-    .presentation-viewer video {
+    .media-frame video {
       display: block;
       width: 100%;
       height: auto;
-      background-color: #151525;
+    }
+
+    /* Contact */
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 25px;
+      align-items: start;
+    }
+
+    .contact-intro {
+      background: var(--hero-bg);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+    }
+
+    .contact-intro h3 {
+      color: white;
+      margin: 0 0 10px;
+    }
+
+    .contact-intro p {
+      color: #cbd5e1;
+      font-size: 14px;
     }
 
     .contact-form label {
       display: block;
-      margin: 16px 0 6px;
-      font-weight: bold;
       color: var(--heading);
+      font-size: 13px;
+      font-weight: 800;
+      margin: 14px 0 6px;
     }
 
     .contact-form input,
     .contact-form textarea {
       width: 100%;
-      padding: 12px;
+      padding: 12px 13px;
       border: 1px solid var(--border);
-      border-radius: 8px;
-      background-color: var(--input-bg);
+      border-radius: 9px;
+      background: var(--input-bg);
       color: var(--text);
-      font: inherit;
-    }
-
-    .contact-form textarea {
-      min-height: 130px;
-      resize: vertical;
+      outline: none;
     }
 
     .contact-form input:focus,
     .contact-form textarea:focus {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
     }
 
-    .contact-form input:valid:not(:placeholder-shown),
-    .contact-form textarea:valid:not(:placeholder-shown) {
-      border: 2px solid #16a34a;
-    }
-
-    .contact-form input:invalid:not(:placeholder-shown),
-    .contact-form textarea:invalid:not(:placeholder-shown) {
-      border: 2px solid #dc2626;
+    .contact-form textarea {
+      min-height: 120px;
+      resize: vertical;
     }
 
     .contact-form button {
-      margin-top: 18px;
-      padding: 12px 24px;
-      background-color: var(--accent);
-      color: #ffffff;
-      border: none;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: bold;
+      margin-top: 17px;
+      padding: 12px 20px;
+      border: 0;
+      border-radius: 9px;
+      background: var(--accent);
+      color: white;
+      font-weight: 800;
       cursor: pointer;
-      transition: background-color 0.2s;
+      transition: 0.2s;
     }
 
     .contact-form button:hover {
-      background-color: var(--accent-hover);
+      background: var(--accent-hover);
     }
 
     #contact-status {
+      color: var(--accent);
+      font-size: 13px;
       margin-top: 12px;
+    }
+
+    /* Footer */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0 35px;
+      margin-top: 55px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    footer strong {
       color: var(--heading);
     }
 
-    @media (max-width: 650px) {
+    /* Responsive layout */
+
+    @media (max-width: 750px) {
+      .profile-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .profile-card:first-child {
+        grid-column: span 2;
+      }
+
+      .course-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
       .container {
-        margin: 15px auto;
-        padding: 14px;
+        width: min(100% - 26px, 1080px);
       }
 
-      header {
-        padding: 25px;
-        padding-top: 75px;
+      .navbar {
+        padding: 17px 0;
       }
 
-      .theme-toggle {
-        top: 20px;
-        right: 20px;
+      .nav-link {
+        display: none;
       }
 
-      .info {
+      .hero {
+        padding: 42px 25px;
+        border-radius: 16px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .section {
+        margin: 32px 0;
+      }
+
+      .section-heading {
+        align-items: start;
         flex-direction: column;
       }
 
-      .materials,
-      .contact-section,
-      .team-project-section {
+      .profile-grid,
+      .course-grid,
+      .assignment-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card:first-child {
+        grid-column: auto;
+      }
+
+      .profile-card {
+        padding: 19px;
+      }
+
+      .panel {
         padding: 20px;
       }
 
-      .team-project-card,
-      .proposal-card {
-        padding: 18px;
-      }
-
-      .presentation-viewer iframe {
-        height: 400px;
-      }
-
-      h1 {
-        font-size: 1.7rem;
+      .media-frame iframe {
+        height: 350px;
       }
     }
   </style>
 </head>
 
 <body>
+
   <div class="container">
 
-    <header>
-      <button
-        class="theme-toggle"
-        id="theme-toggle"
-        type="button"
-        aria-label="Switch to dark mode"
-        aria-pressed="false">
-        🌙 Dark Mode
-      </button>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <a href="#" class="brand">WEB<span>PROGRAMMING.</span></a>
 
-      <h1>Web Programming</h1>
-      <p>A collection of my Web Programming class work</p>
-    </header>
+      <div class="nav-right">
+        <a href="#courses" class="nav-link">Coursework</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch to dark mode"
+          aria-pressed="false">
+          🌙 Dark
+        </button>
+      </div>
+    </nav>
 
     <main>
-      <div class="info">
-        <div>
-          <strong>Student</strong>
-          <p>Chingun</p>
-          <p>Student ID: 202539480</p>
+
+      <!-- Hero -->
+      <section class="hero">
+        <span class="hero-label">Gachon University · Web Programming</span>
+
+        <h1>Welcome to my <span>Web Programming</span> portfolio.</h1>
+
+        <p>
+          Explore my coursework, weekly assignments, development projects,
+          and progress throughout the semester.
+        </p>
+
+        <a href="#courses" class="hero-button">
+          Explore My Coursework →
+        </a>
+      </section>
+
+      <!-- Student Profile -->
+      <section class="section" id="profile">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">About Me</p>
+            <h2>Student Profile</h2>
+            <p class="section-description">
+              Information about my university studies.
+            </p>
+          </div>
         </div>
 
-        <div>
-          <strong>Major</strong>
-          <p>Computer Engineering</p>
-        </div>
+        <div class="profile-grid">
 
-        <div>
-          <strong>University</strong>
-          <p>Gachon University</p>
-        </div>
-      </div>
+          <div class="profile-card primary">
+            <div class="profile-icon">👨‍💻</div>
+            <strong>Student</strong>
+            <p>Chingun</p>
+            <p class="student-id">Student ID: 202539480</p>
+          </div>
 
-      <section class="materials">
-        <h2>Course Materials</h2>
+          <div class="profile-card">
+            <div class="profile-icon">💻</div>
+            <strong>Major</strong>
+            <p>Computer Engineering</p>
+          </div>
 
-        <p><a href="week%202/">Week 2</a></p>
-        <p><a href="week%203/">Week 3</a></p>
-        <p><a href="week%204/">Week 4</a></p>
-        <p><a href="week%205/">Week 5</a></p>
-        <p><a href="week%206/">Week 6</a></p>
-        <p><a href="week%207/">Week 7</a></p>
-        <p><a href="week%208/">Week 8</a></p>
-        <p><a href="week%209/">Week 9</a></p>
-        <p><a href="week%2010/">Week 10</a></p>
-        <p><a href="accessibility-audit.html">Accessibility Audit</a></p>
-        <p><a href="week%2010/performance-report.html">Website Performance Report</a></p>
+          <div class="profile-card">
+            <div class="profile-icon">🎓</div>
+            <strong>University</strong>
+            <p>Gachon University</p>
+          </div>
 
-        <div class="lecture-assignments">
-
-          <h3>2026.11.06 — Git & Version Control</h3>
-          <p>
-            Git repositories, commits, branches, merging,
-            GitHub exercises, and personal portfolio homework.
-          </p>
-          <p>
-            <a href="2026.11.06/">
-              Open Git & Version Control →
-            </a>
-          </p>
-
-          <h3>2026.11.09 — GitHub Pages & Deployment</h3>
-          <p>
-            GitHub Pages, custom 404 pages, Book Search deployment,
-            and personal portfolio deployment.
-          </p>
-          <p>
-            <a href="2026.11.09/">
-              Open GitHub Pages & Deployment →
-            </a>
-          </p>
         </div>
       </section>
 
-      <section class="team-project-section">
-        <h2>Team Project</h2>
+      <!-- Course Materials -->
+      <section class="section" id="courses">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">My Learning Journey</p>
+            <h2>Course Materials</h2>
+            <p class="section-description">
+              Browse my weekly Web Programming exercises and assignments.
+            </p>
+          </div>
+        </div>
 
-        <div class="team-project-card">
+        <div class="course-grid">
+
+          <a class="course-card" href="week%202/">
+            <span><span class="course-number">01 / </span>Week 2</span>
+            <span class="course-arrow">↗</span>
+          </a>
+
+          <a class="course-card" href="week%203/">
+            <span><span class="course-number">02 / </span>Week 3</span>
+            <span class="course-arrow">↗</span>
+          </a>
+
+          <a class="course-card" href="week%204/">
+            <span><span class="course-number">03 / </span>Week 4</span>
+            <span class="course-arrow">↗</span>
+          </a>
+
+          <a class="course-card" href="week%205/">
+            <span><span class="course-number">04 / </span>Week 5</span>
+            <span class="course-arrow">↗</span>
+          </a>
+
+          <a class="course-card" href="week%206/">
+            <span><span class="course-number">05 / </span>Week 6</span>
+            <span class="course-arrow">↗</span>
+          </a>
+
+          <a class="course-card" href="week%207/">
+            <span><span class="course-number">06 / </span>Week 7</span>
+            <span class="course-arrow">↗</span>
+          </a>
+
+          <a class="course-card" href="week%208/">
+            <span><span class="course-number">07 / </span>Week 8</span>
+            <span class="course-arrow">↗</span>
+          </a>
+
+          <a class="course-card" href="week%209/">
+            <span><span class="course-number">08 / </span>Week 9</span>
+            <span class="course-arrow">↗</span>
+          </a>
+
+          <a class="course-card" href="week%2010/">
+            <span><span class="course-number">09 / </span>Week 10</span>
+            <span class="course-arrow">↗</span>
+          </a>
+
+          <a class="course-card" href="accessibility-audit.html">
+            <span>Accessibility Audit</span>
+            <span class="course-arrow">↗</span>
+          </a>
+
+          <a class="course-card" href="week%2010/performance-report.html">
+            <span>Performance Report</span>
+            <span class="course-arrow">↗</span>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- Recent Assignments -->
+      <section class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Recent Coursework</p>
+            <h2>Featured Assignments</h2>
+            <p class="section-description">
+              A closer look at my recent development exercises.
+            </p>
+          </div>
+        </div>
+
+        <div class="assignment-grid">
+
+          <article class="assignment-card">
+            <span class="assignment-tag">November 6, 2026</span>
+            <h3>Git & Version Control</h3>
+            <p>
+              Git repositories, commits, branches, merging,
+              GitHub exercises, and personal portfolio homework.
+            </p>
+            <a class="card-link" href="2026.11.06/">
+              View Assignment →
+            </a>
+          </article>
+
+          <article class="assignment-card">
+            <span class="assignment-tag">November 9, 2026</span>
+            <h3>GitHub Pages & Deployment</h3>
+            <p>
+              GitHub Pages, custom 404 pages, Book Search deployment,
+              and personal portfolio deployment.
+            </p>
+            <a class="card-link" href="2026.11.09/">
+              View Assignment →
+            </a>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Team Project -->
+      <section class="section" id="projects">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Group Development</p>
+            <h2>Team Project</h2>
+            <p class="section-description">
+              Explore our team's work and presentation materials.
+            </p>
+          </div>
+        </div>
+
+        <div class="panel">
           <h3>What's Cooking?</h3>
 
           <p>
-            Our team's project, a website focused on
-            everyday recipes and making cooking more accessible to everyone.
+            Our team's project is a website focused on everyday recipes
+            and making cooking more accessible to everyone.
           </p>
 
-          <a class="project-link"
-             href="https://erdenetsogt-delgerbat.github.io/team-Project/"
-             target="_blank"
-             rel="noopener noreferrer">
-            Visit Team Project →
-          </a>
+          <div class="project-links">
+            <a class="project-button"
+               href="https://erdenetsogt-delgerbat.github.io/team-Project/"
+               target="_blank"
+               rel="noopener noreferrer">
+              Visit Team Project ↗
+            </a>
 
-          <a class="project-link"
-             href="https://github.com/ERDENETSOGT-DELGERBAT/team-Project"
-             target="_blank"
-             rel="noopener noreferrer"
-             style="margin-left: 18px;">
-            Source Code Repository →
-          </a>
+            <a class="project-button secondary"
+               href="https://github.com/ERDENETSOGT-DELGERBAT/team-Project"
+               target="_blank"
+               rel="noopener noreferrer">
+              View Source Code ↗
+            </a>
+          </div>
         </div>
 
-        <div class="proposal-card">
+        <div class="panel">
           <h3>Team Project Research Proposal</h3>
 
           <p>
-            View our team's research proposal presentation below.
-            You can navigate through the slides directly on this page.
+            View our team's research proposal presentation.
+            You can navigate through the slides directly below.
           </p>
 
-          <div class="presentation-viewer">
+          <div class="media-frame">
             <iframe
               src="https://view.officeapps.live.com/op/embed.aspx?src=https%3A%2F%2Ferdenetsogt-delgerbat.github.io%2FWeb-Programming%2Fteam-project-research-proposal.pptx"
               title="Team Project Research Proposal Presentation"
@@ -451,18 +884,15 @@
           </div>
         </div>
 
-        <div class="proposal-card">
+        <div class="panel">
           <h3>Team Project Presentation Video</h3>
 
           <p>
-            Watch our team's project presentation video below.
+            Watch our team's project presentation video.
           </p>
 
-          <div class="presentation-viewer">
-            <video
-              controls
-              playsinline
-              preload="metadata">
+          <div class="media-frame">
+            <video controls playsinline preload="metadata">
               <source src="team-project-presentation.mp4" type="video/mp4">
               Your browser does not support HTML video.
             </video>
@@ -470,72 +900,98 @@
         </div>
       </section>
 
-      <section class="contact-section">
-        <h2>Contact Me</h2>
+      <!-- Contact -->
+      <section class="section" id="contact">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Get in Touch</p>
+            <h2>Contact Me</h2>
+            <p class="section-description">
+              Have a question or feedback? Send me a message.
+            </p>
+          </div>
+        </div>
 
-        <form class="contact-form" id="contact-form" action="#" method="post">
+        <div class="panel contact-layout">
 
-          <label for="contact-name">Name</label>
-          <input
-            type="text"
-            id="contact-name"
-            name="name"
-            placeholder="Your name"
-            minlength="2"
-            required
-          >
+          <div class="contact-intro">
+            <h3>Let's Connect!</h3>
+            <p>
+              Thank you for visiting my Web Programming portfolio.
+              Feel free to leave a message or share your feedback.
+            </p>
+          </div>
 
-          <label for="contact-email">Email</label>
-          <input
-            type="email"
-            id="contact-email"
-            name="email"
-            placeholder="you@example.com"
-            required
-          >
+          <form class="contact-form" id="contact-form" action="#" method="post">
 
-          <label for="contact-subject">Subject</label>
-          <input
-            type="text"
-            id="contact-subject"
-            name="subject"
-            placeholder="Message subject"
-            minlength="3"
-            required
-          >
+            <label for="contact-name">Your Name</label>
+            <input
+              type="text"
+              id="contact-name"
+              name="name"
+              placeholder="Enter your name"
+              minlength="2"
+              required>
 
-          <label for="contact-message">Message</label>
-          <textarea
-            id="contact-message"
-            name="message"
-            placeholder="Write your message"
-            minlength="10"
-            required
-          ></textarea>
+            <label for="contact-email">Email Address</label>
+            <input
+              type="email"
+              id="contact-email"
+              name="email"
+              placeholder="you@example.com"
+              required>
 
-          <button type="submit">Send Message</button>
+            <label for="contact-subject">Subject</label>
+            <input
+              type="text"
+              id="contact-subject"
+              name="subject"
+              placeholder="Message subject"
+              minlength="3"
+              required>
 
-          <p id="contact-status" aria-live="polite"></p>
-        </form>
+            <label for="contact-message">Message</label>
+            <textarea
+              id="contact-message"
+              name="message"
+              placeholder="Write your message here..."
+              minlength="10"
+              required></textarea>
+
+            <button type="submit">Send Message →</button>
+
+            <p id="contact-status" aria-live="polite"></p>
+          </form>
+
+        </div>
       </section>
+
     </main>
+
+    <footer>
+      <strong>Web Programming</strong> · Chingun · Gachon University
+      <br>
+      © 2026 All Rights Reserved
+    </footer>
 
   </div>
 
   <script>
-    // Dark mode toggle
+    // Light and dark mode
     const themeToggle = document.getElementById('theme-toggle');
 
     function updateThemeButton(isDark) {
-      themeToggle.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
-      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.textContent = isDark ? '☀️ Light' : '🌙 Dark';
+
       themeToggle.setAttribute(
         'aria-label',
         isDark ? 'Switch to light mode' : 'Switch to dark mode'
       );
+
+      themeToggle.setAttribute('aria-pressed', String(isDark));
     }
 
-    // Restore the previously selected theme
+    // Restore saved theme
     const savedTheme = localStorage.getItem('web-programming-theme');
 
     if (savedTheme === 'dark') {
@@ -557,13 +1013,14 @@
       updateThemeButton(isDark);
     });
 
-    // Contact form
+    // Contact form validation
     document.getElementById('contact-form').addEventListener('submit', function(event) {
       event.preventDefault();
 
       document.getElementById('contact-status').textContent =
-        'Your form is valid, but message will not be sent.';
+        'Your form is valid, but the message will not be sent.';
     });
   </script>
+
 </body>
 </html>
