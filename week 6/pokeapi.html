@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chingun's Yu-Gi-Oh! Card Database</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #151525;
+      color: #f1f1f1;
+      max-width: 750px;
+      margin: auto;
+      padding: 25px;
+    }
+
+    h1, h2 {
+      color: #a78bfa;
+    }
+
+    section {
+      background: #23233a;
+      padding: 20px;
+      margin-bottom: 18px;
+      border: 1px solid #393957;
+      border-radius: 12px;
+    }
+
+    input {
+      padding: 11px;
+      margin: 5px;
+      border: 1px solid #555577;
+      border-radius: 6px;
+      background: #151525;
+      color: white;
+    }
+
+    button {
+      padding: 11px 16px;
+      margin: 5px;
+      background: #7c3aed;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #6d28d9;
+      transform: translateY(-2px);
+    }
+
+    img {
+      width: 220px;
+      max-width: 100%;
+      display: block;
+      margin: 15px auto;
+      border-radius: 8px;
+    }
+
+    #name {
+      text-align: center;
+      font-size: 25px;
+    }
+
+    #status {
+      color: #c4b5fd;
+      margin-top: 12px;
+    }
+
+    .info-item {
+      background: #2e2e49;
+      padding: 10px;
+      border-radius: 6px;
+      margin: 8px 0;
+    }
+
+    .description {
+      line-height: 1.6;
+      background: #2e2e49;
+      padding: 14px;
+      border-radius: 8px;
+    }
+
+    a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #c4b5fd;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Chingun's Yu-Gi-Oh! Database</h1>
+  <p>Search and explore cards from the Yu-Gi-Oh! trading card game.</p>
+
+  <section>
+    <h2>Card Search</h2>
+
+    <input
+      type="text"
+      id="cardInput"
+      placeholder="Enter card name..."
+    >
+
+    <button onclick="searchCard()">Search</button>
+    <button onclick="randomCard()">Random Card</button>
+
+    <p id="status">Search for your favorite Yu-Gi-Oh! card!</p>
+  </section>
+
+  <section id="details" hidden>
+
+    <h2 id="name"></h2>
+
+    <img id="cardImage" alt="Yu-Gi-Oh! card artwork">
+
+    <div id="cardInfo"></div>
+
+    <h2>Card Description</h2>
+    <p id="description" class="description"></p>
+
+  </section>
+
+  <p>
+    <a href="index.html">← Back to Week 6</a>
+  </p>
+
+  <script>
+    async function searchCard() {
+      let value = document.getElementById('cardInput')
+        .value.trim();
+
+      if (value === '') {
+        document.getElementById('status').textContent =
+          'Please enter a card name.';
+        return;
+      }
+
+      await loadCard(value);
+    }
+
+    async function loadCard(value) {
+      let status = document.getElementById('status');
+      let details = document.getElementById('details');
+
+      status.textContent = 'Searching for card...';
+      details.hidden = true;
+
+      try {
+        const res = await fetch(
+          'https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=' +
+          encodeURIComponent(value)
+        );
+
+        if (!res.ok) {
+          throw new Error('Card not found');
+        }
+
+        const data = await res.json();
+
+        if (!data.data || data.data.length === 0) {
+          throw new Error('Card not found');
+        }
+
+        let card = data.data[0];
+
+        document.getElementById('name').textContent =
+          card.name;
+
+        document.getElementById('cardImage').src =
+          card.card_images[0].image_url;
+
+        document.getElementById('description').textContent =
+          card.desc;
+
+        let info = document.getElementById('cardInfo');
+        info.textContent = '';
+
+        let cardDetails = [
+          ['Card Type', card.type],
+          ['Race', card.race],
+          ['Attribute', card.attribute || 'Not applicable'],
+          ['Level / Rank', card.level || 'Not applicable'],
+          ['ATK', card.atk !== undefined ? card.atk : 'Not applicable'],
+          ['DEF', card.def !== undefined ? card.def : 'Not applicable']
+        ];
+
+        for (let item of cardDetails) {
+          let div = document.createElement('div');
+          div.className = 'info-item';
+
+          div.textContent = item[0] + ': ' + item[1];
+
+          info.appendChild(div);
+        }
+
+        status.textContent = 'Card successfully loaded!';
+        details.hidden = false;
+
+      } catch (error) {
+        status.textContent =
+          'Card not found or API unavailable. Try another card name.';
+      }
+    }
+
+    async function randomCard() {
+      let status = document.getElementById('status');
+
+      status.textContent = 'Finding a random card...';
+
+      try {
+        const res = await fetch(
+          'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=1&offset=' +
+          Math.floor(Math.random() * 1000)
+        );
+
+        if (!res.ok) {
+          throw new Error('Request failed');
+        }
+
+        const data = await res.json();
+
+        let card = data.data[0];
+
+        document.getElementById('cardInput').value =
+          card.name;
+
+        await loadCard(card.name);
+
+      } catch (error) {
+        status.textContent =
+          'Could not find a random card. Please try again.';
+      }
+    }
+
+    document.getElementById('cardInput')
+      .addEventListener('keydown', event => {
+        if (event.key === 'Enter') {
+          searchCard();
+        }
+      });
+
+    loadCard('Dark Magician');
+  </script>
+
+</body>
+</html>
