@@ -1,204 +1,205 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chingun's Car Database</title>
+  <title>REST Countries</title>
 
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #151525;
-      color: #f1f1f1;
+      background: #f5f5f5;
+      color: #1e293b;
       max-width: 700px;
       margin: auto;
       padding: 25px;
     }
 
     section {
-      background: #23233a;
+      background: white;
       padding: 20px;
       margin-bottom: 18px;
-      border: 1px solid #393957;
-      border-radius: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
     }
 
     h1, h2 {
-      color: #a78bfa;
+      color: #0f766e;
     }
 
     input, button {
-      padding: 10px;
-      margin: 5px 4px 5px 0;
-      border-radius: 6px;
+      padding: 9px;
+      margin: 4px 0;
     }
 
     input {
       width: 65%;
       max-width: 350px;
-      background: #151525;
-      color: white;
-      border: 1px solid #555577;
     }
 
     button {
-      background: #7c3aed;
-      color: white;
-      border: none;
       cursor: pointer;
-      transition: 0.2s;
     }
 
-    button:hover {
-      background: #6d28d9;
-      transform: translateY(-2px);
-    }
-
-    #status {
-      color: #c4b5fd;
-    }
-
-    .car-card {
-      background: #2e2e49;
-      border: 1px solid #454563;
-      border-radius: 8px;
-      padding: 14px;
-      margin: 10px 0;
-    }
-
-    .car-card h3 {
-      color: #c4b5fd;
-      margin-top: 0;
+    .flag {
+      max-width: 180px;
+      max-height: 120px;
     }
 
     .detail {
-      border-bottom: 1px solid #454563;
+      border-bottom: 1px solid #eee;
       padding: 8px 0;
     }
 
     a {
-      color: #a78bfa;
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: #c4b5fd;
-      text-decoration: underline;
-    }
-
-    .car-icon {
-      font-size: 25px;
+      color: #0f766e;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>Chingun's Car Database</h1>
-  <p>Explore automobile manufacturers and discover their car models.</p>
+  <h1>REST Countries</h1>
+  <p>Search for a country to explore its flag, capital and population.</p>
 
   <section>
-    <h2>Search Cars</h2>
-
     <input
       type="text"
-      id="carInput"
-      value="Toyota"
-      placeholder="Enter manufacturer (e.g. BMW)"
+      id="countryInput"
+      value="Mongolia"
+      placeholder="Enter a country name"
     >
+    <button onclick="searchCountry()">Search</button>
 
-    <button onclick="searchCars()">Search</button>
-
-    <p id="status">Loading car information...</p>
+    <p id="status">Loading country...</p>
     <div id="results"></div>
   </section>
 
-  <p>
-    <a href="index.html">← Back to Week 6</a>
-  </p>
+  <p><a href="index.html">Back to Week 6</a></p>
 
   <script>
-    async function searchCars() {
-      let name = document.getElementById('carInput').value.trim();
+    async function searchCountry() {
+      let name = document.getElementById('countryInput').value.trim();
       let status = document.getElementById('status');
       let output = document.getElementById('results');
 
       output.textContent = '';
 
       if (name === '') {
-        status.textContent = 'Please enter a car manufacturer.';
+        status.textContent = 'Please enter a country name.';
         return;
       }
 
-      status.textContent = 'Searching for car models...';
+      status.textContent = 'Searching...';
 
       try {
+        let query = name;
+
+        if (name.toLowerCase() === 'south korea') {
+          query = 'Korea';
+        }
+
+        if (name.toLowerCase() === 'north korea') {
+          query = 'Korea';
+        }
+
         const res = await fetch(
-          'https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/' +
-          encodeURIComponent(name) + '?format=json'
+          'https://countries.dev/name/' + encodeURIComponent(query)
         );
 
         if (!res.ok) {
-          throw new Error('Request failed');
+          throw new Error('Country not found');
         }
 
         let data = await res.json();
 
-        if (!data.Results || data.Results.length === 0) {
-          throw new Error('No cars found');
+        if (!Array.isArray(data)) {
+          throw new Error('Invalid response');
         }
 
-        status.textContent =
-          data.Results.length + ' car model(s) found.';
+        if (name.toLowerCase() === 'south korea') {
+          data = data.filter(country => country.alpha2Code === 'KR');
+        }
 
-        let results = data.Results;
+        if (name.toLowerCase() === 'north korea') {
+          data = data.filter(country => country.alpha2Code === 'KP');
+        }
 
-        for (let car of results) {
-          let card = document.createElement('div');
-          card.className = 'car-card';
+        if (data.length === 0) {
+          throw new Error('Country not found');
+        }
 
-          let icon = document.createElement('p');
-          icon.className = 'car-icon';
-          icon.textContent = '🚗';
+        status.textContent = data.length + ' result(s) found.';
 
-          let title = document.createElement('h3');
-          title.textContent = car.Model_Name;
+        for (let country of data) {
+          let card = document.createElement('section');
 
-          let manufacturer = document.createElement('p');
-          manufacturer.className = 'detail';
-          manufacturer.textContent =
-            'Manufacturer: ' + car.Make_Name;
+          let title = document.createElement('h2');
+          title.textContent = country.name;
 
-          let modelId = document.createElement('p');
-          modelId.className = 'detail';
-          modelId.textContent =
-            'Model ID: ' + car.Model_ID;
+          let flag = document.createElement('img');
+          flag.className = 'flag';
+          flag.alt = country.name + ' flag';
 
-          card.appendChild(icon);
+          if (country.flags && country.flags.png) {
+            flag.src = country.flags.png;
+          } else if (country.flags && country.flags.svg) {
+            flag.src = country.flags.svg;
+          } else {
+            flag.src = 'https://countries.dev/flags/' +
+              country.alpha2Code.toLowerCase() + '.svg';
+          }
+
+          let capital = document.createElement('p');
+          capital.className = 'detail';
+          capital.textContent = 'Capital: ' +
+            (country.capital || 'Not available');
+
+          let population = document.createElement('p');
+          population.className = 'detail';
+          population.textContent = 'Population: ' +
+            (country.population != null
+              ? country.population.toLocaleString()
+              : 'Not available');
+
+          let region = document.createElement('p');
+          region.className = 'detail';
+          region.textContent = 'Region: ' +
+            (country.region || 'Not available');
+
+          let area = document.createElement('p');
+          area.className = 'detail';
+          area.textContent = 'Area: ' +
+            (country.area != null
+              ? country.area.toLocaleString() + ' km²'
+              : 'Not available');
+
           card.appendChild(title);
-          card.appendChild(manufacturer);
-          card.appendChild(modelId);
+          card.appendChild(flag);
+          card.appendChild(capital);
+          card.appendChild(population);
+          card.appendChild(region);
+          card.appendChild(area);
 
           output.appendChild(card);
         }
 
       } catch (error) {
         status.textContent =
-          'No car models found or the service is unavailable. Try another manufacturer.';
+          'Country not found or the service is unavailable. Please try another name.';
       }
     }
 
-    document.getElementById('carInput').addEventListener(
+    document.getElementById('countryInput').addEventListener(
       'keydown',
       function(event) {
         if (event.key === 'Enter') {
-          searchCars();
+          searchCountry();
         }
       }
     );
 
-    searchCars();
+    searchCountry();
   </script>
 
 </body>
