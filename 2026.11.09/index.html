@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga Library - GitHub Deployment</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 35px 20px;
+            background: #151525;
+            color: #f1f1f1;
+            font-family: Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        header {
+            padding: 40px;
+            background: #23233a;
+            color: white;
+            border: 1px solid #393957;
+            border-radius: 16px;
+        }
+
+        header p {
+            color: #aaaac2;
+        }
+
+        .eyebrow {
+            color: #a78bfa;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        header .eyebrow {
+            color: #c4b5fd;
+        }
+
+        h1 {
+            margin: 8px 0;
+            font-size: 38px;
+            color: #a78bfa;
+        }
+
+        section {
+            margin-top: 22px;
+            padding: 28px;
+            background: #23233a;
+            border: 1px solid #393957;
+            border-radius: 14px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        section:hover {
+            transform: translateY(-3px);
+            border-color: #7c3aed;
+        }
+
+        h2 {
+            margin: 6px 0 12px;
+            font-size: 23px;
+            color: #c4b5fd;
+        }
+
+        section p:not(.eyebrow) {
+            color: #aaaac2;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .links a {
+            display: inline-block;
+            padding: 10px 16px;
+            background: #7c3aed;
+            color: white;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .links a:hover {
+            background: #6d28d9;
+        }
+
+        figure {
+            margin: 22px 0 0;
+        }
+
+        figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid #393957;
+            border-radius: 10px;
+        }
+
+        figcaption {
+            margin-top: 8px;
+            color: #aaaac2;
+            font-size: 13px;
+        }
+
+        .score {
+            display: inline-block;
+            padding: 8px 14px;
+            background: #39256b;
+            color: #c4b5fd;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #8888a5;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 28px 22px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            section {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<main>
+
+    <header>
+        <p class="eyebrow">GACHON UNIVERSITY · COMPUTER SCIENCE</p>
+        <h1>Website Publishing & Deployment</h1>
+        <p>November 12, 2026 · Web Development Project</p>
+        <p>Learning how to publish websites and manage online projects.</p>
+    </header>
+
+    <section>
+        <p class="eyebrow">PRACTICAL TASK · 01</p>
+        <h2>Website Hosting & Error Page Design</h2>
+
+        <p>
+            Published the Web Programming project through GitHub Pages.
+            Also created a custom error page to help visitors return
+            to the main website when they visit an unavailable page.
+        </p>
+
+        <div class="links">
+            <a href="https://github.com/ERDENETSOGT-DELGERBAT/webpro-w9"
+               target="_blank" rel="noopener noreferrer">
+                Explore Source Code →
+            </a>
+
+            <a href="https://erdenetsogt-delgerbat.github.io/webpro-w9/"
+               target="_blank" rel="noopener noreferrer">
+                Open Published Website →
+            </a>
+
+            <a href="https://github.com/ERDENETSOGT-DELGERBAT/webpro-w9/blob/main/404.html"
+               target="_blank" rel="noopener noreferrer">
+                View Error Page Code →
+            </a>
+
+            <a href="https://erdenetsogt-delgerbat.github.io/webpro-w9/this-does-not-exist.html"
+               target="_blank" rel="noopener noreferrer">
+                Preview Error Page →
+            </a>
+        </div>
+    </section>
+
+    <section>
+        <p class="eyebrow">APPLICATION PROJECT · 02</p>
+        <h2>Manga Search Application</h2>
+
+        <p>
+            Created a web application that allows visitors to discover
+            manga titles and explore information about different series.
+            The project was published online using GitHub Pages.
+        </p>
+
+        <div class="links">
+            <a href="https://github.com/ERDENETSOGT-DELGERBAT/webpro-book-search"
+               target="_blank" rel="noopener noreferrer">
+                View Application Repository →
+            </a>
+
+            <a href="https://erdenetsogt-delgerbat.github.io/webpro-book-search/"
+               target="_blank" rel="noopener noreferrer">
+                Launch Manga Search →
+            </a>
+        </div>
+    </section>
+
+    <section>
+        <p class="eyebrow">PERSONAL PROJECT · 03</p>
+        <h2>Personal Website Publication</h2>
+
+        <p>
+            Designed and published a personal portfolio website.
+            It includes an introduction, project showcase, responsive
+            page layout, and interactive JavaScript features.
+        </p>
+
+        <p>
+            The website was also tested with Lighthouse to evaluate
+            its accessibility and overall user experience.
+        </p>
+
+        <div class="score">
+            Accessibility Test: 100 / 100
+        </div>
+
+        <div class="links">
+            <a href="https://github.com/ERDENETSOGT-DELGERBAT/portfolio"
+               target="_blank" rel="noopener noreferrer">
+                View Portfolio Source →
+            </a>
+
+            <a href="https://erdenetsogt-delgerbat.github.io/portfolio/"
+               target="_blank" rel="noopener noreferrer">
+                Visit Personal Website →
+            </a>
+        </div>
+
+        <figure>
+            <img
+                src="lighthouse-accessibility.png"
+                alt="Lighthouse accessibility audit report showing a score of 100 out of 100."
+            >
+            <figcaption>
+                Website accessibility evaluation using Google Lighthouse.
+            </figcaption>
+        </figure>
+    </section>
+
+    <footer>
+        <p>© 2026 Chingun · Gachon University</p>
+        <p>Web Development | Website Deployment</p>
+    </footer>
+
+</main>
+</body>
+</html>
