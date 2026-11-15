@@ -10,38 +10,38 @@
   <style>
     :root {
       color-scheme: light;
-      --bg: #f4f6fb;
-      --surface: #ffffff;
-      --surface-alt: #edf1f8;
-      --text: #17233c;
-      --muted: #68758c;
-      --heading: #172e55;
-      --accent: #2563eb;
-      --accent-hover: #1d4ed8;
-      --highlight: #f59e0b;
-      --border: #dfe5ef;
-      --shadow: 0 12px 35px rgba(25, 45, 80, 0.07);
-      --hero-bg: #172e55;
-      --hero-text: #ffffff;
-      --input-bg: #ffffff;
+      --bg: #eeeae0;
+      --surface: #faf8f2;
+      --surface-alt: #e5e0d5;
+      --text: #22211e;
+      --muted: #77746d;
+      --heading: #171717;
+      --accent: #293fda;
+      --accent-hover: #f04435;
+      --highlight: #f04435;
+      --border: #d5d0c5;
+      --shadow: 0 8px 25px rgba(23, 23, 23, 0.06);
+      --hero-bg: #171717;
+      --hero-text: #faf8f2;
+      --input-bg: #faf8f2;
     }
 
     body.dark-mode {
       color-scheme: dark;
-      --bg: #101827;
-      --surface: #192438;
-      --surface-alt: #222f46;
-      --text: #edf2fc;
-      --muted: #a5b2c8;
-      --heading: #e4edff;
-      --accent: #60a5fa;
-      --accent-hover: #93c5fd;
-      --highlight: #fbbf24;
-      --border: #30405a;
-      --shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
-      --hero-bg: #1c2e4b;
+      --bg: #171717;
+      --surface: #22211e;
+      --surface-alt: #302e29;
+      --text: #eeeae0;
+      --muted: #aaa69d;
+      --heading: #faf8f2;
+      --accent: #8492ff;
+      --accent-hover: #ff7164;
+      --highlight: #ff7164;
+      --border: #45423b;
+      --shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      --hero-bg: #293fda;
       --hero-text: #ffffff;
-      --input-bg: #142035;
+      --input-bg: #22211e;
     }
 
     * {
@@ -54,7 +54,7 @@
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'DM Sans', Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.65;
@@ -70,9 +70,7 @@
       color: var(--accent-hover);
     }
 
-    button,
-    input,
-    textarea {
+    button, input, textarea {
       font: inherit;
     }
 
@@ -93,13 +91,14 @@
 
     .brand {
       color: var(--heading);
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 19px;
       font-weight: 800;
       letter-spacing: -0.5px;
     }
 
     .brand span {
-      color: var(--accent);
+      color: var(--highlight);
     }
 
     .nav-right {
@@ -110,18 +109,18 @@
 
     .nav-link {
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
     }
 
     .nav-link:hover {
-      color: var(--accent);
+      color: var(--highlight);
     }
 
     .theme-toggle {
       padding: 9px 14px;
       border: 1px solid var(--border);
-      border-radius: 9px;
+      border-radius: 0;
       background: var(--surface);
       color: var(--text);
       font-size: 13px;
@@ -131,7 +130,7 @@
     }
 
     .theme-toggle:hover {
-      border-color: var(--accent);
+      border-color: var(--highlight);
       transform: translateY(-2px);
     }
 
@@ -142,31 +141,29 @@
       overflow: hidden;
       background: var(--hero-bg);
       color: var(--hero-text);
-      border-radius: 22px;
+      border-top: 7px solid var(--highlight);
       padding: 65px 55px;
       margin: 12px 0 30px;
       box-shadow: var(--shadow);
     }
 
     .hero::after {
-      content: "";
+      content: "C";
       position: absolute;
-      width: 280px;
-      height: 280px;
-      border: 45px solid rgba(255, 255, 255, 0.06);
-      border-radius: 50%;
-      right: -65px;
-      top: -100px;
+      right: 20px;
+      bottom: -150px;
+      color: rgba(255, 255, 255, 0.05);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 400px;
+      font-weight: 800;
       pointer-events: none;
     }
 
     .hero-label {
       display: inline-block;
-      background: rgba(255, 255, 255, 0.12);
-      color: #bfdbfe;
-      padding: 7px 13px;
-      border-radius: 30px;
-      font-size: 12px;
+      color: #f04435;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
       font-weight: 800;
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -174,46 +171,53 @@
     }
 
     .hero h1 {
+      position: relative;
+      z-index: 1;
       max-width: 650px;
-      font-size: clamp(34px, 5vw, 52px);
-      line-height: 1.15;
-      letter-spacing: -1.5px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.1;
+      letter-spacing: -2px;
       margin: 0 0 16px;
     }
 
     .hero h1 span {
-      color: #fbbf24;
+      color: #f04435;
     }
 
     .hero p {
+      position: relative;
+      z-index: 1;
       max-width: 570px;
-      color: #cbd5e1;
+      color: #c8c5bd;
       margin: 0;
-      font-size: 16px;
+      font-size: 15px;
     }
 
     .hero-button {
       display: inline-block;
+      position: relative;
+      z-index: 1;
       margin-top: 27px;
-      background: #f59e0b;
-      color: #17233c;
+      background: #f04435;
+      color: white;
       padding: 12px 20px;
-      border-radius: 9px;
+      font-family: 'Space Mono', monospace;
       font-weight: 800;
-      font-size: 14px;
+      font-size: 12px;
       transition: 0.2s;
     }
 
     .hero-button:hover {
-      background: #fbbf24;
-      color: #17233c;
+      background: #293fda;
+      color: white;
       transform: translateY(-2px);
     }
 
     /* Section headings */
 
     .section {
-      margin: 42px 0;
+      margin: 48px 0;
       scroll-margin-top: 20px;
     }
 
@@ -226,8 +230,9 @@
     }
 
     .eyebrow {
-      color: var(--accent);
-      font-size: 11px;
+      color: var(--highlight);
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 1.5px;
@@ -236,8 +241,9 @@
 
     h2 {
       color: var(--heading);
-      font-size: 25px;
-      letter-spacing: -0.5px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      letter-spacing: -1px;
       margin: 0;
     }
 
@@ -258,13 +264,13 @@
     .profile-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 15px;
+      border-top: 3px solid var(--accent);
       padding: 23px;
       box-shadow: var(--shadow);
     }
 
     .profile-card.primary {
-      border-top: 4px solid var(--accent);
+      border-top-color: var(--highlight);
     }
 
     .profile-icon {
@@ -273,7 +279,6 @@
       display: grid;
       place-items: center;
       background: var(--surface-alt);
-      border-radius: 10px;
       margin-bottom: 15px;
       font-size: 18px;
     }
@@ -281,7 +286,8 @@
     .profile-card strong {
       display: block;
       color: var(--muted);
-      font-size: 12px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 6px;
@@ -316,7 +322,6 @@
       gap: 12px;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
       padding: 17px 18px;
       color: var(--heading);
       font-weight: 700;
@@ -332,12 +337,13 @@
 
     .course-number {
       color: var(--muted);
-      font-size: 12px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
       font-weight: 700;
     }
 
     .course-arrow {
-      color: var(--accent);
+      color: var(--highlight);
       font-size: 18px;
     }
 
@@ -352,7 +358,7 @@
     .assignment-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 15px;
+      border-left: 4px solid var(--highlight);
       padding: 24px;
       box-shadow: var(--shadow);
       transition: transform 0.2s, border-color 0.2s;
@@ -367,17 +373,18 @@
       display: inline-block;
       color: var(--accent);
       background: var(--surface-alt);
-      border-radius: 6px;
       padding: 5px 9px;
-      font-size: 11px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
       font-weight: 800;
       margin-bottom: 14px;
     }
 
     .assignment-card h3 {
       color: var(--heading);
+      font-family: 'Space Grotesk', sans-serif;
       margin: 0 0 8px;
-      font-size: 18px;
+      font-size: 19px;
     }
 
     .assignment-card p {
@@ -388,7 +395,8 @@
 
     .card-link {
       color: var(--accent);
-      font-size: 13px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
       font-weight: 800;
     }
 
@@ -397,7 +405,6 @@
     .panel {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 17px;
       padding: 27px;
       box-shadow: var(--shadow);
       margin-bottom: 17px;
@@ -405,8 +412,9 @@
 
     .panel h3 {
       color: var(--heading);
+      font-family: 'Space Grotesk', sans-serif;
       margin: 0 0 9px;
-      font-size: 19px;
+      font-size: 20px;
     }
 
     .panel p {
@@ -423,17 +431,17 @@
 
     .project-button {
       display: inline-block;
-      padding: 10px 15px;
-      border-radius: 8px;
+      padding: 11px 16px;
       background: var(--accent);
       color: white;
-      font-size: 13px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
       font-weight: 800;
       transition: 0.2s;
     }
 
     .project-button:hover {
-      background: var(--accent-hover);
+      background: var(--highlight);
       color: white;
       transform: translateY(-2px);
     }
@@ -448,12 +456,87 @@
       border-color: var(--accent);
     }
 
+    /* My Websites */
+
+    .website-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .website-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 205px;
+      padding: 23px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--accent);
+      color: var(--text);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .website-card:first-child {
+      border-top-color: var(--highlight);
+    }
+
+    .website-card:last-child {
+      border-top-color: var(--blue, #293fda);
+    }
+
+    .website-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--highlight);
+      color: var(--text);
+    }
+
+    .website-number {
+      color: var(--highlight);
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .website-card h3 {
+      margin: 17px 0 7px;
+      color: var(--heading);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+    }
+
+    .website-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .website-open {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 22px;
+      padding-top: 13px;
+      border-top: 1px solid var(--border);
+      color: var(--accent);
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .website-card:hover .website-open {
+      color: var(--highlight);
+    }
+
+    /* Media */
+
     .media-frame {
       width: 100%;
       overflow: hidden;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      background: #101827;
+      background: #171717;
       margin-top: 18px;
     }
 
@@ -482,8 +565,8 @@
     .contact-intro {
       background: var(--hero-bg);
       color: white;
-      border-radius: 15px;
       padding: 25px;
+      border-top: 4px solid var(--highlight);
     }
 
     .contact-intro h3 {
@@ -492,7 +575,7 @@
     }
 
     .contact-intro p {
-      color: #cbd5e1;
+      color: #c8c5bd;
       font-size: 14px;
     }
 
@@ -509,7 +592,6 @@
       width: 100%;
       padding: 12px 13px;
       border: 1px solid var(--border);
-      border-radius: 9px;
       background: var(--input-bg);
       color: var(--text);
       outline: none;
@@ -518,7 +600,7 @@
     .contact-form input:focus,
     .contact-form textarea:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+      box-shadow: 0 0 0 3px rgba(41, 63, 218, 0.12);
     }
 
     .contact-form textarea {
@@ -530,16 +612,17 @@
       margin-top: 17px;
       padding: 12px 20px;
       border: 0;
-      border-radius: 9px;
       background: var(--accent);
       color: white;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
       font-weight: 800;
       cursor: pointer;
       transition: 0.2s;
     }
 
     .contact-form button:hover {
-      background: var(--accent-hover);
+      background: var(--highlight);
     }
 
     #contact-status {
@@ -555,7 +638,8 @@
       padding: 25px 0 35px;
       margin-top: 55px;
       color: var(--muted);
-      font-size: 13px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
       text-align: center;
     }
 
@@ -563,7 +647,7 @@
       color: var(--heading);
     }
 
-    /* Responsive layout */
+    /* Responsive */
 
     @media (max-width: 750px) {
       .profile-grid {
@@ -576,6 +660,10 @@
 
       .course-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .website-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
       .contact-layout {
@@ -598,7 +686,6 @@
 
       .hero {
         padding: 42px 25px;
-        border-radius: 16px;
       }
 
       .hero h1 {
@@ -616,7 +703,8 @@
 
       .profile-grid,
       .course-grid,
-      .assignment-grid {
+      .assignment-grid,
+      .website-grid {
         grid-template-columns: 1fr;
       }
 
@@ -636,6 +724,13 @@
         height: 350px;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 
@@ -649,6 +744,7 @@
 
       <div class="nav-right">
         <a href="#courses" class="nav-link">Coursework</a>
+        <a href="#websites" class="nav-link">My Websites</a>
         <a href="#projects" class="nav-link">Projects</a>
         <a href="#contact" class="nav-link">Contact</a>
 
@@ -694,7 +790,6 @@
         </div>
 
         <div class="profile-grid">
-
           <div class="profile-card primary">
             <div class="profile-icon">👨‍💻</div>
             <strong>Student</strong>
@@ -713,7 +808,6 @@
             <strong>University</strong>
             <p>Gachon University</p>
           </div>
-
         </div>
       </section>
 
@@ -730,7 +824,6 @@
         </div>
 
         <div class="course-grid">
-
           <a class="course-card" href="week%202/">
             <span><span class="course-number">01 / </span>Week 2</span>
             <span class="course-arrow">↗</span>
@@ -785,7 +878,6 @@
             <span>Performance Report</span>
             <span class="course-arrow">↗</span>
           </a>
-
         </div>
       </section>
 
@@ -802,7 +894,6 @@
         </div>
 
         <div class="assignment-grid">
-
           <article class="assignment-card">
             <span class="assignment-tag">November 6, 2026</span>
             <h3>Git & Version Control</h3>
@@ -826,6 +917,85 @@
               View Assignment →
             </a>
           </article>
+        </div>
+      </section>
+
+      <!-- My Websites -->
+      <section class="section" id="websites">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Explore My Work</p>
+            <h2>My Websites & Online Projects</h2>
+            <p class="section-description">
+              Visit my portfolio, Book Search application, and GitHub assignment.
+            </p>
+          </div>
+        </div>
+
+        <div class="website-grid">
+
+          <a class="website-card"
+             href="https://aidy40.github.io/portfolio/"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Open My Portfolio in a new tab">
+
+            <div>
+              <span class="website-number">01 / PERSONAL WEBSITE</span>
+              <h3>My Portfolio</h3>
+              <p>
+                My personal website showcasing my background,
+                skills, projects, and web development journey.
+              </p>
+            </div>
+
+            <div class="website-open">
+              <span>Visit Website</span>
+              <span>↗</span>
+            </div>
+          </a>
+
+          <a class="website-card"
+             href="https://aidy40.github.io/webpro-book-search/"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Open Book Search Project in a new tab">
+
+            <div>
+              <span class="website-number">02 / WEB APPLICATION</span>
+              <h3>Book Search</h3>
+              <p>
+                A web application for searching and exploring
+                books through an interactive interface.
+              </p>
+            </div>
+
+            <div class="website-open">
+              <span>Visit Project</span>
+              <span>↗</span>
+            </div>
+          </a>
+
+          <a class="website-card"
+             href="https://aidy40.github.io/webpro-w9/"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Open Git and GitHub Assignment in a new tab">
+
+            <div>
+              <span class="website-number">03 / COURSE ASSIGNMENT</span>
+              <h3>Git & GitHub</h3>
+              <p>
+                My Week 9 assignment covering Git,
+                GitHub repositories, version control, and deployment.
+              </p>
+            </div>
+
+            <div class="website-open">
+              <span>Visit Assignment</span>
+              <span>↗</span>
+            </div>
+          </a>
 
         </div>
       </section>
@@ -992,7 +1162,13 @@
     }
 
     // Restore saved theme
-    const savedTheme = localStorage.getItem('web-programming-theme');
+    let savedTheme = null;
+
+    try {
+      savedTheme = localStorage.getItem('web-programming-theme');
+    } catch (error) {
+      savedTheme = null;
+    }
 
     if (savedTheme === 'dark') {
       document.body.classList.add('dark-mode');
@@ -1005,10 +1181,14 @@
 
       const isDark = document.body.classList.contains('dark-mode');
 
-      localStorage.setItem(
-        'web-programming-theme',
-        isDark ? 'dark' : 'light'
-      );
+      try {
+        localStorage.setItem(
+          'web-programming-theme',
+          isDark ? 'dark' : 'light'
+        );
+      } catch (error) {
+        console.warn('Theme preference could not be saved.');
+      }
 
       updateThemeButton(isDark);
     });
