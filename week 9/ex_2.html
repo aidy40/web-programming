@@ -1,28 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manga Library - Image Accessibility</title>
+  <title>Image Alt Text</title>
 
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #151525;
-      color: #f1f1f1;
+      background: #f5f3ff;
+      color: #282344;
       max-width: 850px;
       margin: auto;
       padding: 25px;
     }
 
     h1 {
-      color: #c4b5fd;
-    }
-
-    .intro {
-      color: #aaaac2;
-      line-height: 1.6;
+      color: #6d4bc3;
     }
 
     .gallery {
@@ -32,16 +26,10 @@
     }
 
     article {
-      background: #23233a;
+      background: white;
       padding: 16px;
-      border: 1px solid #393957;
-      border-radius: 12px;
-      transition: 0.3s;
-    }
-
-    article:hover {
-      border-color: #7c3aed;
-      transform: translateY(-3px);
+      border: 1px solid #e2dcf5;
+      border-radius: 10px;
     }
 
     article img {
@@ -49,116 +37,96 @@
       width: 100%;
       height: 150px;
       object-fit: contain;
-      background: #151525;
-      border-radius: 8px;
+      background: #f8f7fc;
+      border-radius: 6px;
     }
 
     h2 {
       font-size: 18px;
-      color: #a78bfa;
+      color: #50358f;
     }
 
     p {
       font-size: 14px;
       line-height: 1.6;
-      color: #aaaac2;
     }
 
     a {
-      color: #a78bfa;
+      color: #5b3aa8;
     }
 
     a:focus-visible,
     button:focus-visible {
-      outline: 3px solid #c4b5fd;
+      outline: 3px solid #e09f22;
       outline-offset: 4px;
     }
 
     button {
-      padding: 11px 17px;
+      padding: 10px 16px;
       border: none;
-      border-radius: 8px;
-      background: #7c3aed;
+      border-radius: 6px;
+      background: #6d4bc3;
       color: white;
-      font-weight: bold;
       cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background: #6d28d9;
     }
 
     #feedback {
       line-height: 1.8;
       margin-top: 15px;
-      padding: 15px;
-      background: #23233a;
-      border: 1px solid #393957;
-      border-radius: 8px;
-      color: #c4b5fd;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>Manga Library - Image Alt Text</h1>
-  <p class="intro">
-    Learn how to write image descriptions that help people
-    using screen readers understand visual content.
-  </p>
+  <h1>Image Alt Text</h1>
+  <p>Learn how to describe images for people using screen readers.</p>
 
   <main class="gallery">
 
     <article>
       <img
-        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240'%3E%3Crect width='400' height='240' fill='%2323233a'/%3E%3Ccircle cx='200' cy='105' r='55' fill='%23a78bfa'/%3E%3Cpath d='M145 85 L155 30 L190 65 L220 25 L250 85' fill='%23c4b5fd'/%3E%3Ccircle cx='180' cy='105' r='5' fill='%23151525'/%3E%3Ccircle cx='220' cy='105' r='5' fill='%23151525'/%3E%3Cpath d='M180 130 Q200 145 220 130' stroke='%23151525' stroke-width='4' fill='none'/%3E%3C/svg%3E"
-        alt="Anime-style character with purple hair, large eyes, and a smiling expression"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240'%3E%3Crect width='400' height='240' fill='%23dbeafe'/%3E%3Crect x='65' y='55' width='270' height='145' fill='%2393b4d8'/%3E%3Crect x='85' y='75' width='45' height='42' fill='%23f8fafc'/%3E%3Crect x='150' y='75' width='45' height='42' fill='%23f8fafc'/%3E%3Crect x='215' y='75' width='45' height='42' fill='%23f8fafc'/%3E%3Crect x='280' y='75' width='35' height='42' fill='%23f8fafc'/%3E%3Crect x='175' y='145' width='50' height='55' fill='%23475f7a'/%3E%3C/svg%3E"
+        alt="Illustration of a university building with rows of windows and a central entrance"
       >
-      <h2>1. Informative Image</h2>
-      <p>A descriptive alternative text explains the important visual details.</p>
+      <h2>1. Informative image</h2>
+      <p>The description explains what the image shows.</p>
     </article>
 
     <article>
       <img
-        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240'%3E%3Crect width='400' height='240' fill='%2323233a'/%3E%3Cpath d='M0 160 Q100 40 200 160 T400 160' fill='none' stroke='%237c3aed' stroke-width='14'/%3E%3Ccircle cx='80' cy='55' r='25' fill='%23a78bfa'/%3E%3C/svg%3E"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240'%3E%3Crect width='400' height='240' fill='%23dcfce7'/%3E%3Cpath d='M0 120 Q50 50 100 120 T200 120 T300 120 T400 120' fill='none' stroke='%23178056' stroke-width='12'/%3E%3C/svg%3E"
         alt=""
       >
-      <h2>2. Decorative Image</h2>
-      <p>An empty alt attribute allows screen readers to skip decorative images.</p>
+      <h2>2. Decorative image</h2>
+      <p>The empty alt attribute lets screen readers skip this decorative wave.</p>
     </article>
 
     <article>
-      <a href="index.html" aria-label="Return to the Manga Library homepage">
+      <a href="index.html" aria-label="Go to the Web Programming homepage">
         <img
-          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240'%3E%3Crect width='400' height='240' rx='16' fill='%2323233a'/%3E%3Crect x='110' y='40' width='180' height='160' rx='8' fill='%237c3aed'/%3E%3Cpath d='M140 70 H260 M140 100 H260 M140 130 H240 M140 160 H220' stroke='%23ffffff' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E"
-          alt="Purple manga book icon representing the library homepage"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240'%3E%3Crect width='400' height='240' rx='16' fill='%23fef3c7'/%3E%3Cpath d='M200 40 L245 95 L220 95 L220 150 L180 150 L180 95 L155 95 Z' fill='%23854d0e'/%3E%3Crect x='125' y='165' width='150' height='12' rx='6' fill='%23854d0e'/%3E%3C/svg%3E"
+          alt="Web Programming homepage"
         >
       </a>
-      <h2>3. Linked Image</h2>
-      <p>The image description explains the purpose of the clickable image.</p>
+      <h2>3. Linked image</h2>
+      <p>The accessible name explains where selecting the image will take you.</p>
     </article>
 
     <article>
       <img
-        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240'%3E%3Crect width='400' height='240' fill='%2323233a'/%3E%3Cpath d='M55 195 H355 M55 195 V35' stroke='%23aaaac2' stroke-width='3' fill='none'/%3E%3Crect x='95' y='120' width='55' height='75' fill='%23c4b5fd'/%3E%3Crect x='180' y='80' width='55' height='115' fill='%23a78bfa'/%3E%3Crect x='265' y='45' width='55' height='150' fill='%237c3aed'/%3E%3C/svg%3E"
-        alt="Bar chart showing manga readers increasing from 500 in 2024 to 800 in 2025 and 1,200 in 2026"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240'%3E%3Crect width='400' height='240' fill='%23f3e8ff'/%3E%3Cpath d='M60 190 H355 M60 190 V35' stroke='%236b647e' stroke-width='3' fill='none'/%3E%3Crect x='95' y='110' width='55' height='80' fill='%239f8ad6'/%3E%3Crect x='180' y='75' width='55' height='115' fill='%237e65c4'/%3E%3Crect x='265' y='50' width='55' height='140' fill='%235b3aa8'/%3E%3C/svg%3E"
+        alt="Bar chart showing student enrollment increasing from 1,200 in 2024 to 1,400 in 2025 and 1,476 in 2026"
       >
-      <h2>4. Data Chart</h2>
-      <p>Alternative text describes the important data and overall trend.</p>
+      <h2>4. Data chart</h2>
+      <p>The description communicates the important numbers and trend.</p>
     </article>
 
   </main>
 
-  <h2>Test Image Descriptions</h2>
-  <p>Click the button to check whether each image has an appropriate alt attribute.</p>
-
-  <button type="button" id="check-button">Check Image Alt Text</button>
-
-  <div id="feedback" role="status" aria-live="polite">
-    Your image accessibility results will appear here.
-  </div>
+  <h2>Check the image descriptions</h2>
+  <button type="button" id="check-button">Check alt text</button>
+  <div id="feedback" role="status" aria-live="polite"></div>
 
   <p><a href="index.html">Back to Week 9</a></p>
 
@@ -172,13 +140,13 @@
         const alt = image.getAttribute('alt');
 
         if (alt === null) {
-          results.push('Image ' + (index + 1) + ': Missing alt attribute.');
+          results.push('Image ' + (index + 1) + ': missing alt attribute.');
         } else if (index === 1 && alt !== '') {
-          results.push('Image 2: Decorative images should use alt="".');
+          results.push('Image 2: the decorative image should use alt="".');
         } else if (alt === '') {
-          results.push('Image ' + (index + 1) + ': Empty alt text.');
+          results.push('Image ' + (index + 1) + ': empty alt text.');
         } else {
-          results.push('Image ' + (index + 1) + ': Descriptive alt text is present.');
+          results.push('Image ' + (index + 1) + ': descriptive alt text is present.');
         }
       });
 
