@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manga Library - Registration</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #151525;
+      color: #f1f1f1;
+    }
+
+    .container {
+      background: #23233a;
+      border: 1px solid #393957;
+      border-radius: 14px;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #c4b5fd;
+      text-align: center;
+    }
+
+    p {
+      color: #aaaac2;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin: 16px 0 7px;
+      color: #ddd6fe;
+    }
+
+    input {
+      padding: 11px;
+      width: 100%;
+      box-sizing: border-box;
+      background: #151525;
+      color: white;
+      border: 1px solid #393957;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #7c3aed;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px 18px;
+      width: 100%;
+      background: #7c3aed;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #6d28d9;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Join Manga Library</h1>
+    <p>Create your account to explore your favorite manga.</p>
+
+    <form method="post" action="#">
+
+      <label for="member-id">Member ID</label>
+      <input
+        type="text"
+        id="member-id"
+        name="member_id"
+        pattern="[0-9]{8}"
+        required
+        title="Enter an 8-digit member ID"
+        placeholder="12345678"
+      >
+
+      <label for="user-email">Email Address</label>
+      <input
+        type="email"
+        id="user-email"
+        name="email"
+        required
+        placeholder="example@email.com"
+      >
+
+      <label for="user-pw">Create Password</label>
+      <input
+        type="password"
+        id="user-pw"
+        name="password"
+        minlength="10"
+        required
+        placeholder="At least 10 characters"
+      >
+
+      <label for="user-age">Your Age</label>
+      <input
+        type="number"
+        id="user-age"
+        name="age"
+        min="13"
+        max="99"
+        required
+        placeholder="Enter your age"
+      >
+
+      <button type="submit">Create Account</button>
+
+    </form>
+
+    <p>Enter valid information to complete the registration form.</p>
+
+  </div>
+
+</body>
+</html>
