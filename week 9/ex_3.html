@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manga Library - Accessible Sign Up</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #151525;
+      color: #f1f1f1;
+      max-width: 720px;
+      margin: auto;
+      padding: 25px;
+    }
+
+    .panel {
+      background: #23233a;
+      padding: 25px;
+      margin-bottom: 18px;
+      border: 1px solid #393957;
+      border-radius: 12px;
+    }
+
+    h1, h2 {
+      color: #a78bfa;
+    }
+
+    label {
+      display: block;
+      margin: 14px 0 6px;
+      font-weight: bold;
+      color: #c4b5fd;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 11px;
+      border: 1px solid #555575;
+      border-radius: 6px;
+      background: #151525;
+      color: #f1f1f1;
+      font: inherit;
+    }
+
+    input::placeholder {
+      color: #8888a5;
+    }
+
+    input:focus-visible,
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid #a78bfa;
+      outline-offset: 3px;
+    }
+
+    input:invalid:not(:placeholder-shown) {
+      border-color: #ef4444;
+      background: #30202b;
+    }
+
+    input:valid:not(:placeholder-shown) {
+      border-color: #22c55e;
+      background: #1d302b;
+    }
+
+    button {
+      padding: 10px 16px;
+      margin-top: 14px;
+      border: none;
+      border-radius: 6px;
+      background: #7c3aed;
+      color: white;
+      font: inherit;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #6d28d9;
+    }
+
+    .error {
+      min-height: 18px;
+      color: #f87171;
+      font-size: 13px;
+    }
+
+    .message {
+      padding: 12px;
+      background: #19192d;
+      border: 1px solid #393957;
+      border-radius: 6px;
+      line-height: 1.5;
+      color: #c4b5fd;
+    }
+
+    .submit {
+      width: 100%;
+    }
+
+    a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #c4b5fd;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Manga Library - Accessible Sign Up</h1>
+
+  <section class="panel">
+    <h2>Need Help?</h2>
+
+    <button
+      type="button"
+      id="search-button"
+      aria-label="Show email and password guidance"
+      aria-expanded="false"
+      aria-controls="help"
+    >? Help</button>
+
+    <p id="help" class="message" hidden>
+      Enter a valid email address and a password containing at least eight characters to create your Manga Library account.
+    </p>
+  </section>
+
+  <section class="panel">
+    <h2>Create Your Account</h2>
+
+    <form id="signup-form" novalidate>
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="name@example.com"
+        aria-describedby="email-error"
+        required
+      >
+      <p id="email-error" class="error"></p>
+
+      <label for="password">Create Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="At least 8 characters"
+        minlength="8"
+        aria-describedby="password-error"
+        required
+      >
+      <p id="password-error" class="error"></p>
+
+      <p id="status" class="message" role="status" aria-live="polite"></p>
+
+      <button type="submit" class="submit">Join Manga Library</button>
+    </form>
+
+    <p><a href="index.html">Back to Week 9</a></p>
+  </section>
+
+  <script>
+    const helpButton = document.getElementById('search-button');
+    const help = document.getElementById('help');
+    const form = document.getElementById('signup-form');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+
+    helpButton.addEventListener('click', function() {
+      help.hidden = !help.hidden;
+      helpButton.setAttribute('aria-expanded', String(!help.hidden));
+    });
+
+    function checkEmail() {
+      const error = document.getElementById('email-error');
+
+      if (email.value === '') {
+        error.textContent = '';
+        email.removeAttribute('aria-invalid');
+      } else if (!email.validity.valid) {
+        error.textContent = 'Error: Please enter a valid email address.';
+        email.setAttribute('aria-invalid', 'true');
+      } else {
+        error.textContent = '';
+        email.setAttribute('aria-invalid', 'false');
+      }
+    }
+
+    function checkPassword() {
+      const error = document.getElementById('password-error');
+
+      if (password.value === '') {
+        error.textContent = '';
+        password.removeAttribute('aria-invalid');
+      } else if (password.value.length < 8) {
+        error.textContent = 'Error: Password must be at least 8 characters.';
+        password.setAttribute('aria-invalid', 'true');
+      } else {
+        error.textContent = '';
+        password.setAttribute('aria-invalid', 'false');
+      }
+    }
+
+    email.addEventListener('input', checkEmail);
+    password.addEventListener('input', checkPassword);
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      checkEmail();
+      checkPassword();
+
+      if (!form.checkValidity()) {
+        document.getElementById('status').textContent =
+          'Please correct the errors before continuing.';
+        form.reportValidity();
+      } else {
+        document.getElementById('status').textContent =
+          'The form is valid. This demo does not create or save an account.';
+      }
+    });
+  </script>
+
+</body>
+</html>
