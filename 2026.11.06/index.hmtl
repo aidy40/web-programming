@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manga Library - Git & Version Control</title>
+    <title>Git & Version Control</title>
 
     <style>
         body {
             margin: 0;
             padding: 35px 20px;
-            background: #151525;
-            color: #f1f1f1;
+            background: #f5f6fa;
+            color: #20283b;
             font-family: Arial, sans-serif;
             line-height: 1.7;
         }
@@ -23,55 +23,46 @@
 
         header {
             padding: 40px;
-            background: #23233a;
+            background: #202b49;
             color: white;
-            border: 1px solid #393957;
             border-radius: 16px;
         }
 
         header p {
-            color: #aaaac2;
+            color: #d0d7eb;
         }
 
         .eyebrow {
-            color: #a78bfa;
+            color: #6558e8;
             font-size: 12px;
             font-weight: bold;
             letter-spacing: 2px;
         }
 
         header .eyebrow {
-            color: #c4b5fd;
+            color: #c4bdff;
         }
 
         h1 {
             margin: 8px 0;
             font-size: 38px;
-            color: #a78bfa;
         }
 
         section {
             margin-top: 22px;
             padding: 28px;
-            background: #23233a;
-            border: 1px solid #393957;
+            background: white;
+            border: 1px solid #e5e7ef;
             border-radius: 14px;
-            transition: border-color 0.2s, transform 0.2s;
-        }
-
-        section:hover {
-            border-color: #7c3aed;
-            transform: translateY(-3px);
         }
 
         h2 {
             margin: 6px 0 12px;
             font-size: 23px;
-            color: #c4b5fd;
         }
 
         section p:not(.eyebrow) {
-            color: #aaaac2;
+            color: #505b70;
         }
 
         .links {
@@ -84,23 +75,22 @@
         .links a {
             display: inline-block;
             padding: 10px 16px;
-            background: #7c3aed;
+            background: #5548c8;
             color: white;
             border-radius: 8px;
             font-weight: bold;
             font-size: 14px;
             text-decoration: none;
-            transition: background 0.2s;
         }
 
         .links a:hover {
-            background: #6d28d9;
+            background: #4034a8;
         }
 
         footer {
             margin-top: 30px;
             text-align: center;
-            color: #8888a5;
+            color: #626b80;
             font-size: 13px;
         }
 
@@ -124,84 +114,74 @@
 <main>
 
     <header>
-        <p class="eyebrow">GACHON UNIVERSITY · COMPUTER SCIENCE</p>
+        <p class="eyebrow">GACHON UNIVERSITY · WEB PROGRAMMING</p>
         <h1>Git & Version Control</h1>
-        <p>November 6, 2026 · Week 10 Assignment</p>
-        <p>Learning repository management and collaborative development.</p>
+        <p>Lecture date: November 6, 2026</p>
     </header>
 
     <section>
-        <p class="eyebrow">PERSONAL PROJECT</p>
-        <h2>My Developer Portfolio</h2>
+        <p class="eyebrow">HOMEWORK</p>
+        <h2>Personal Portfolio</h2>
         <p>
-            Built a personal portfolio to introduce myself, present my
-            technical skills, and showcase projects completed during
-            my Web Programming course.
+            Created a personal portfolio repository containing
+            my introduction, skills, and selected Web Programming projects.
         </p>
 
         <div class="links">
             <a href="https://github.com/ERDENETSOGT-DELGERBAT/portfolio"
                target="_blank" rel="noopener noreferrer">
-                View Portfolio Repository →
+                Portfolio Repository →
             </a>
 
             <a href="https://erdenetsogt-delgerbat.github.io/portfolio/"
                target="_blank" rel="noopener noreferrer">
-                Visit Portfolio Website →
+                Live Portfolio Website →
             </a>
         </div>
     </section>
 
     <section>
-        <p class="eyebrow">PRACTICAL WORK · E1–E3</p>
-        <h2>Git and GitHub Practice</h2>
+        <p class="eyebrow">INTERACTIVE EXERCISES · E1–E3</p>
+        <h2>Git & GitHub Exercises</h2>
         <p>
-            Practiced essential Git commands, including creating
-            repositories, tracking files, making commits, and managing
-            branches.
+            Practiced creating a repository, adding and committing files,
+            creating a feature branch, and merging changes.
         </p>
         <p>
-            Also learned how to merge changes and publish a project
-            using GitHub Pages.
+            The exercises were completed using the webpro-w9 repository.
         </p>
 
         <div class="links">
             <a href="https://erdenetsogt-delgerbat.github.io/webpro-w9/"
                target="_blank" rel="noopener noreferrer">
-                Open Git Exercises →
+                GitHub Exercises →
             </a>
         </div>
     </section>
 
     <section>
-        <p class="eyebrow">REPOSITORY PROJECT</p>
-        <h2>Web Programming Assignments</h2>
+        <p class="eyebrow">HOMEWORK</p>
+        <h2>webpro-w9</h2>
         <p>
-            Created a GitHub repository to organize and publish
-            HTML, CSS, and JavaScript assignments from the
-            Web Programming course.
-        </p>
-        <p>
-            Used GitHub Pages to make the project accessible
-            through a public website.
+            Created and published a GitHub repository containing
+            my HTML assignment page and stylesheet.
         </p>
 
         <div class="links">
             <a href="https://github.com/ERDENETSOGT-DELGERBAT/webpro-w9"
                target="_blank" rel="noopener noreferrer">
-                View Source Code →
+                GitHub Repository →
             </a>
 
             <a href="https://erdenetsogt-delgerbat.github.io/webpro-w9/"
                target="_blank" rel="noopener noreferrer">
-                View Live Website →
+                Live GitHub Pages Website →
             </a>
         </div>
     </section>
 
     <footer>
-        <p>© 2026 Chingun · Gachon University</p>
-        <p>Web Programming | Git & Version Control</p>
+        <p>© 2026 Erdenetsogt Delgerbat · Gachon University</p>
     </footer>
 
 </main>
