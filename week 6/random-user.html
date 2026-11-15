@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chingun's Random Traveler Generator</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #151525;
+      color: #f1f1f1;
+      max-width: 700px;
+      margin: auto;
+      padding: 25px;
+    }
+
+    h1, h2 {
+      color: #a78bfa;
+    }
+
+    section {
+      background: #23233a;
+      padding: 22px;
+      border: 1px solid #393957;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 11px 16px;
+      background: #7c3aed;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #6d28d9;
+      transform: translateY(-2px);
+    }
+
+    button:disabled {
+      background: #555577;
+      cursor: not-allowed;
+    }
+
+    #status {
+      color: #c4b5fd;
+    }
+
+    .travel-card {
+      background: #2e2e49;
+      padding: 18px;
+      border-radius: 10px;
+      margin-top: 15px;
+      line-height: 1.7;
+    }
+
+    .destination {
+      font-size: 25px;
+      color: #c4b5fd;
+      font-weight: bold;
+    }
+
+    .travel-icon {
+      font-size: 55px;
+      text-align: center;
+      margin: 10px;
+    }
+
+    .info {
+      border-bottom: 1px solid #454563;
+      padding: 9px 0;
+    }
+
+    a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #c4b5fd;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Chingun's Random Traveler Generator</h1>
+  <p>Discover a random travel destination and create your next adventure!</p>
+
+  <section>
+    <h2>Explore a New Destination</h2>
+
+    <button id="generateButton" onclick="generateTraveler()">
+      Generate Destination
+    </button>
+
+    <p id="status">Ready for your next adventure?</p>
+
+    <div id="destination"></div>
+  </section>
+
+  <p>
+    <a href="index.html">← Back to Week 6</a>
+  </p>
+
+  <script>
+    const destinations = [
+      {
+        city: 'Tokyo',
+        country: 'Japan',
+        icon: '🏯',
+        style: 'City Exploration',
+        budget: '$100 - $180 per day',
+        activity: 'Visit Shibuya, explore Akihabara, and try Japanese food.'
+      },
+      {
+        city: 'Seoul',
+        country: 'South Korea',
+        icon: '🏙️',
+        style: 'Culture and Shopping',
+        budget: '$70 - $130 per day',
+        activity: 'Explore Hongdae, visit Gyeongbokgung Palace, and enjoy Korean BBQ.'
+      },
+      {
+        city: 'Paris',
+        country: 'France',
+        icon: '🗼',
+        style: 'Romantic Adventure',
+        budget: '$120 - $200 per day',
+        activity: 'Visit the Eiffel Tower, explore museums, and enjoy French cafes.'
+      },
+      {
+        city: 'Bangkok',
+        country: 'Thailand',
+        icon: '🌴',
+        style: 'Food and Adventure',
+        budget: '$40 - $90 per day',
+        activity: 'Explore night markets, try street food, and visit temples.'
+      },
+      {
+        city: 'Rome',
+        country: 'Italy',
+        icon: '🏛️',
+        style: 'History and Culture',
+        budget: '$90 - $160 per day',
+        activity: 'Visit the Colosseum, explore historic streets, and try Italian pasta.'
+      },
+      {
+        city: 'New York',
+        country: 'United States',
+        icon: '🗽',
+        style: 'Urban Adventure',
+        budget: '$150 - $250 per day',
+        activity: 'Explore Times Square, Central Park, and famous city attractions.'
+      },
+      {
+        city: 'Bali',
+        country: 'Indonesia',
+        icon: '🏝️',
+        style: 'Relaxation and Nature',
+        budget: '$50 - $110 per day',
+        activity: 'Enjoy tropical beaches, visit waterfalls, and explore local markets.'
+      },
+      {
+        city: 'Barcelona',
+        country: 'Spain',
+        icon: '⚽',
+        style: 'Art and Beach Life',
+        budget: '$90 - $160 per day',
+        activity: 'Visit Sagrada Familia, explore the city, and relax by the beach.'
+      }
+    ];
+
+    function generateTraveler() {
+      let button = document.getElementById('generateButton');
+      let status = document.getElementById('status');
+      let output = document.getElementById('destination');
+
+      button.disabled = true;
+      status.textContent = 'Finding your next destination...';
+      output.textContent = '';
+
+      setTimeout(() => {
+        let randomIndex = Math.floor(
+          Math.random() * destinations.length
+        );
+
+        let place = destinations[randomIndex];
+
+        let card = document.createElement('div');
+        card.className = 'travel-card';
+
+        let icon = document.createElement('div');
+        icon.className = 'travel-icon';
+        icon.textContent = place.icon;
+
+        let city = document.createElement('div');
+        city.className = 'destination';
+        city.textContent = place.city;
+
+        let country = document.createElement('p');
+        country.textContent = 'Country: ' + place.country;
+
+        let style = document.createElement('p');
+        style.className = 'info';
+        style.textContent = 'Travel Style: ' + place.style;
+
+        let budget = document.createElement('p');
+        budget.className = 'info';
+        budget.textContent = 'Estimated Budget: ' + place.budget;
+
+        let activity = document.createElement('p');
+        activity.className = 'info';
+        activity.textContent = 'Recommended Activities: ' + place.activity;
+
+        card.appendChild(icon);
+        card.appendChild(city);
+        card.appendChild(country);
+        card.appendChild(style);
+        card.appendChild(budget);
+        card.appendChild(activity);
+
+        output.appendChild(card);
+
+        status.textContent = 'Your destination is ready!';
+        button.disabled = false;
+      }, 500);
+    }
+  </script>
+
+</body>
+</html>
