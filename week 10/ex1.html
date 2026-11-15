@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manga Library - Performance Practice</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 25px;
+      max-width: 750px;
+      margin: auto;
+      color: #f1f1f1;
+      background: #151525;
+      line-height: 1.6;
+    }
+
+    h1, h2 {
+      color: #a78bfa;
+    }
+
+    .intro {
+      color: #aaaac2;
+      margin-bottom: 25px;
+    }
+
+    .panel {
+      background: #23233a;
+      border: 1px solid #393957;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin: 16px 0;
+      border: 1px solid #393957;
+    }
+
+    .optimization {
+      padding: 12px;
+      margin: 10px 0;
+      background: #19192d;
+      border-left: 4px solid #7c3aed;
+      border-radius: 6px;
+    }
+
+    .optimization strong {
+      color: #c4b5fd;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #39256b;
+      color: #c4b5fd;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Manga Library</h1>
+  <p class="intro">
+    Performance Optimization Practice
+  </p>
+
+  <section class="panel">
+    <span class="tag">Featured Collection</span>
+    <h2>Explore the Manga World</h2>
+    <p>
+      This page demonstrates how images and external scripts can be
+      optimized to improve website loading speed.
+    </p>
+
+    <img
+      src="https://picsum.photos/1200/800"
+      alt="Scenic landscape representing a manga adventure"
+      width="1200"
+      height="800">
+
+    <img
+      src="https://picsum.photos/1200/801"
+      alt="Mountain scenery with a wide open view"
+      width="1200"
+      height="801"
+      loading="lazy">
+
+    <img
+      src="https://picsum.photos/1200/802"
+      alt="Peaceful nature scenery surrounded by trees"
+      width="1200"
+      height="802"
+      loading="lazy">
+  </section>
+
+  <section class="panel">
+    <h2>Website Performance Techniques</h2>
+
+    <div class="optimization">
+      <strong>1. Deferred JavaScript</strong>
+      <p>
+        The jQuery script uses the defer attribute so the browser
+        can continue parsing the HTML before executing the script.
+      </p>
+    </div>
+
+    <div class="optimization">
+      <strong>2. Image Dimensions</strong>
+      <p>
+        Width and height attributes reserve space for images
+        and help prevent unexpected layout shifts.
+      </p>
+    </div>
+
+    <div class="optimization">
+      <strong>3. Lazy Loading</strong>
+      <p>
+        Images below the first section use loading="lazy".
+        They load when the visitor scrolls closer to them.
+      </p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Why Performance Matters</h2>
+    <p>
+      A well-optimized website loads faster, uses fewer resources,
+      and provides a smoother experience for visitors browsing
+      the Manga Library.
+    </p>
+  </section>
+
+</body>
+</html>
