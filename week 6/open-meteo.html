@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seongnam Weather Dashboard</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #151525;
+      color: #f1f1f1;
+      max-width: 700px;
+      margin: auto;
+      padding: 25px;
+    }
+
+    h1 {
+      color: #a78bfa;
+      text-align: center;
+    }
+
+    h2 {
+      color: #c4b5fd;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #aaaac2;
+      margin-bottom: 30px;
+    }
+
+    section {
+      background: #23233a;
+      padding: 22px;
+      margin-bottom: 20px;
+      border: 1px solid #393957;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+
+    section:hover {
+      border-color: #a78bfa;
+    }
+
+    #temperature {
+      font-size: 48px;
+      font-weight: bold;
+      color: #a78bfa;
+      margin: 12px 0;
+    }
+
+    #weatherIcon {
+      font-size: 55px;
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 11px 18px;
+      cursor: pointer;
+      background: #7c3aed;
+      color: white;
+      border: none;
+      border-radius: 7px;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #a78bfa;
+      color: #151525;
+    }
+
+    .detail {
+      border-bottom: 1px solid #393957;
+      padding: 12px 0;
+      color: #e2e2ee;
+    }
+
+    .status {
+      color: #a78bfa;
+    }
+
+    a {
+      color: #c4b5fd;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 25px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <h1>Seongnam Weather Dashboard</h1>
+  <p class="subtitle">Live Weather Information | South Korea</p>
+
+  <section>
+    <button onclick="loadWeather()">Refresh Weather</button>
+
+    <p id="status" class="status">Loading weather information...</p>
+
+    <div id="weatherIcon">🌤️</div>
+
+    <h2 id="condition">Checking weather...</h2>
+
+    <p id="temperature">-- °C</p>
+
+    <p id="location">Location: Seongnam, South Korea</p>
+
+    <div id="details"></div>
+
+    <p id="updated" class="status"></p>
+  </section>
+
+  <p class="footer">
+    <a href="index.html">← Back to Week 6</a>
+  </p>
+
+  <script>
+
+    function getCondition(code) {
+      if (code === 0) return 'Sunny and Clear';
+      if (code === 1) return 'Mostly Sunny';
+      if (code === 2) return 'Partly Cloudy';
+      if (code === 3) return 'Cloudy';
+      if (code === 45 || code === 48) return 'Foggy';
+      if (code >= 51 && code <= 57) return 'Light Drizzle';
+      if (code >= 61 && code <= 67) return 'Rainy';
+      if (code >= 71 && code <= 77) return 'Snowy';
+      if (code >= 80 && code <= 82) return 'Rain Showers';
+      if (code === 85 || code === 86) return 'Snow Showers';
+      if (code >= 95) return 'Thunderstorm';
+
+      return 'Unknown Weather';
+    }
+
+    function getWeatherIcon(code) {
+      if (code === 0) return '☀️';
+      if (code === 1 || code === 2) return '🌤️';
+      if (code === 3) return '☁️';
+      if (code === 45 || code === 48) return '🌫️';
+      if (code >= 51 && code <= 67) return '🌧️';
+      if (code >= 71 && code <= 77) return '❄️';
+      if (code >= 80 && code <= 82) return '🌦️';
+      if (code === 85 || code === 86) return '🌨️';
+      if (code >= 95) return '⛈️';
+
+      return '🌡️';
+    }
+
+    async function loadWeather() {
+
+      document.getElementById('status').textContent =
+        'Loading latest weather...';
+
+      document.getElementById('details').textContent = '';
+
+      try {
+
+        const res = await fetch(
+          'https://api.open-meteo.com/v1/forecast?latitude=37.4449&longitude=127.1388&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m,weather_code&timezone=Asia%2FSeoul'
+        );
+
+        if (!res.ok) {
+          throw new Error('Weather request failed');
+        }
+
+        const data = await res.json();
+
+        const weather = data.current;
+
+        document.getElementById('condition').textContent =
+          getCondition(weather.weather_code);
+
+        document.getElementById('weatherIcon').textContent =
+          getWeatherIcon(weather.weather_code);
+
+        document.getElementById('temperature').textContent =
+          weather.temperature_2m + ' °C';
+
+        let weatherDetails = [
+          ['Feels Like', weather.apparent_temperature + ' °C'],
+          ['Humidity', weather.relative_humidity_2m + '%'],
+          ['Wind Speed', weather.wind_speed_10m + ' km/h'],
+          ['Weather Code', weather.weather_code],
+          ['Local Time', weather.time.replace('T', ' ')]
+        ];
+
+        let output = document.getElementById('details');
+
+        for (let item of weatherDetails) {
+
+          let row = document.createElement('p');
+
+          row.className = 'detail';
+
+          row.textContent = item[0] + ': ' + item[1];
+
+          output.appendChild(row);
+        }
+
+        let updated = new Date().toLocaleTimeString('en-GB', {
+          timeZone: 'Asia/Seoul',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        });
+
+        document.getElementById('updated').textContent =
+          'Last checked: ' + updated + ' Korea time';
+
+        document.getElementById('status').textContent =
+          'Weather information successfully updated!';
+
+      } catch (error) {
+
+        document.getElementById('status').textContent =
+          'Unable to load weather. Please try again.';
+
+      }
+    }
+
+    loadWeather();
+
+  </script>
+
+</body>
+</html>
