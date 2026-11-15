@@ -1,127 +1,62 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Manga Library - Image Gallery</title>
-
+  <title>Responsive Image Practice</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      max-width: 750px;
+      font-family: system-ui, sans-serif;
+      max-width: 700px;
       margin: 40px auto;
       padding: 20px;
-      background: #151525;
-      color: #f1f1f1;
+      background: #f7f8fb;
+      color: #283449;
     }
-
-    h1 {
-      color: #a78bfa;
-    }
-
-    h2 {
-      color: #c4b5fd;
-    }
-
     .image-card {
-      background: #23233a;
-      padding: 24px;
-      border: 1px solid #393957;
+      background: white;
+      padding: 20px;
       border-radius: 14px;
     }
-
     img {
       display: block;
       width: 100%;
       height: auto;
       border-radius: 10px;
-      border: 1px solid #393957;
     }
-
     p {
-      line-height: 1.7;
-      color: #aaaac2;
-    }
-
-    .details {
-      background: #19192d;
-      padding: 15px;
-      margin-top: 18px;
-      border-radius: 8px;
-      border-left: 4px solid #7c3aed;
-    }
-
-    .label {
-      display: inline-block;
-      background: #39256b;
-      color: #c4b5fd;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 13px;
-      margin-bottom: 12px;
+      line-height: 1.6;
+      color: #667085;
     }
   </style>
 </head>
-
 <body>
-
-  <h1>Manga Library</h1>
-  <p>Explore our visual collection and learn about modern image optimization.</p>
-
+  <h1>WebP and Responsive Images</h1>
   <div class="image-card">
-
-    <span class="label">Featured Image</span>
-    <h2>Explore the World of Stories</h2>
-
     <picture>
       <source
         type="image/webp"
         srcset="
-          https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?fit=crop&fm=webp&w=400&h=225&q=80 400w,
-          https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?fit=crop&fm=webp&w=800&h=450&q=80 800w"
+          https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?fit=crop&crop=entropy&fm=webp&w=400&h=225&q=80 400w,
+          https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?fit=crop&crop=entropy&fm=webp&w=800&h=450&q=80 800w"
         sizes="(max-width: 600px) 100vw, 660px">
 
       <img
-        src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?fit=crop&fm=jpg&w=800&h=450&q=80"
+        src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?fit=crop&crop=entropy&fm=jpg&w=800&h=450&q=80"
         srcset="
-          https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?fit=crop&fm=jpg&w=400&h=225&q=80 400w,
-          https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?fit=crop&fm=jpg&w=800&h=450&q=80 800w"
+          https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?fit=crop&crop=entropy&fm=jpg&w=400&h=225&q=80 400w,
+          https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?fit=crop&crop=entropy&fm=jpg&w=800&h=450&q=80 800w"
         sizes="(max-width: 600px) 100vw, 660px"
-        alt="Beautiful sunrise over a green landscape with mountains in the distance"
+        alt="Landscape photograph used to demonstrate responsive image formats"
         width="800"
         height="450"
         fetchpriority="high">
     </picture>
 
-    <div class="details">
-      <h2>Modern Image Formats</h2>
-      <p>
-        The picture element allows the browser to select WebP images
-        when supported. JPEG is provided as a fallback for browsers
-        that cannot use the WebP format.
-      </p>
-    </div>
-
-    <div class="details">
-      <h2>Responsive Display</h2>
-      <p>
-        Multiple image sizes are provided through srcset.
-        The browser chooses an appropriate image depending on
-        the available screen space and resolution.
-      </p>
-    </div>
-
-    <div class="details">
-      <h2>Improved User Experience</h2>
-      <p>
-        Responsive images can reduce unnecessary data usage,
-        improve loading times, and make the website more
-        comfortable to browse on different devices.
-      </p>
-    </div>
-
+    <p>
+      This image uses WebP when supported by the browser and JPEG as a fallback.
+      The browser can also choose between different image sizes depending on the screen.
+    </p>
   </div>
-
 </body>
 </html>
