@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga Library - Git & Version Control</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 35px 20px;
+            background: #151525;
+            color: #f1f1f1;
+            font-family: Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        header {
+            padding: 40px;
+            background: #23233a;
+            color: white;
+            border: 1px solid #393957;
+            border-radius: 16px;
+        }
+
+        header p {
+            color: #aaaac2;
+        }
+
+        .eyebrow {
+            color: #a78bfa;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        header .eyebrow {
+            color: #c4b5fd;
+        }
+
+        h1 {
+            margin: 8px 0;
+            font-size: 38px;
+            color: #a78bfa;
+        }
+
+        section {
+            margin-top: 22px;
+            padding: 28px;
+            background: #23233a;
+            border: 1px solid #393957;
+            border-radius: 14px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        section:hover {
+            border-color: #7c3aed;
+            transform: translateY(-3px);
+        }
+
+        h2 {
+            margin: 6px 0 12px;
+            font-size: 23px;
+            color: #c4b5fd;
+        }
+
+        section p:not(.eyebrow) {
+            color: #aaaac2;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .links a {
+            display: inline-block;
+            padding: 10px 16px;
+            background: #7c3aed;
+            color: white;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .links a:hover {
+            background: #6d28d9;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #8888a5;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 28px 22px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            section {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<main>
+
+    <header>
+        <p class="eyebrow">GACHON UNIVERSITY · COMPUTER SCIENCE</p>
+        <h1>Git & Version Control</h1>
+        <p>November 6, 2026 · Week 10 Assignment</p>
+        <p>Learning repository management and collaborative development.</p>
+    </header>
+
+    <section>
+        <p class="eyebrow">PERSONAL PROJECT</p>
+        <h2>My Developer Portfolio</h2>
+        <p>
+            Built a personal portfolio to introduce myself, present my
+            technical skills, and showcase projects completed during
+            my Web Programming course.
+        </p>
+
+        <div class="links">
+            <a href="https://github.com/ERDENETSOGT-DELGERBAT/portfolio"
+               target="_blank" rel="noopener noreferrer">
+                View Portfolio Repository →
+            </a>
+
+            <a href="https://erdenetsogt-delgerbat.github.io/portfolio/"
+               target="_blank" rel="noopener noreferrer">
+                Visit Portfolio Website →
+            </a>
+        </div>
+    </section>
+
+    <section>
+        <p class="eyebrow">PRACTICAL WORK · E1–E3</p>
+        <h2>Git and GitHub Practice</h2>
+        <p>
+            Practiced essential Git commands, including creating
+            repositories, tracking files, making commits, and managing
+            branches.
+        </p>
+        <p>
+            Also learned how to merge changes and publish a project
+            using GitHub Pages.
+        </p>
+
+        <div class="links">
+            <a href="https://erdenetsogt-delgerbat.github.io/webpro-w9/"
+               target="_blank" rel="noopener noreferrer">
+                Open Git Exercises →
+            </a>
+        </div>
+    </section>
+
+    <section>
+        <p class="eyebrow">REPOSITORY PROJECT</p>
+        <h2>Web Programming Assignments</h2>
+        <p>
+            Created a GitHub repository to organize and publish
+            HTML, CSS, and JavaScript assignments from the
+            Web Programming course.
+        </p>
+        <p>
+            Used GitHub Pages to make the project accessible
+            through a public website.
+        </p>
+
+        <div class="links">
+            <a href="https://github.com/ERDENETSOGT-DELGERBAT/webpro-w9"
+               target="_blank" rel="noopener noreferrer">
+                View Source Code →
+            </a>
+
+            <a href="https://erdenetsogt-delgerbat.github.io/webpro-w9/"
+               target="_blank" rel="noopener noreferrer">
+                View Live Website →
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Chingun · Gachon University</p>
+        <p>Web Programming | Git & Version Control</p>
+    </footer>
+
+</main>
+</body>
+</html>
