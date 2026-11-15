@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chingun's Fun Fact Generator</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #151525;
+      color: #f1f1f1;
+      max-width: 700px;
+      margin: auto;
+      padding: 30px;
+    }
+
+    section {
+      background: #23233a;
+      padding: 22px;
+      margin-bottom: 20px;
+      border: 1px solid #393957;
+      border-radius: 12px;
+    }
+
+    h1, h2 {
+      color: #a78bfa;
+    }
+
+    button {
+      padding: 11px 16px;
+      margin: 5px 5px 5px 0;
+      background: #7c3aed;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #6d28d9;
+      transform: translateY(-2px);
+    }
+
+    button:disabled {
+      background: #555577;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .spinner {
+      display: none;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #393957;
+      border-top: 3px solid #a78bfa;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    #factText {
+      font-size: 19px;
+      line-height: 1.6;
+      color: #e9d5ff;
+      background: #2e2e49;
+      padding: 18px;
+      border-radius: 8px;
+      min-height: 50px;
+    }
+
+    #status {
+      color: #c4b5fd;
+    }
+
+    #error {
+      color: #f87171;
+    }
+
+    .favourite-item {
+      border-bottom: 1px solid #454563;
+      padding: 12px 0;
+      line-height: 1.5;
+    }
+
+    .empty-message {
+      color: #aaa;
+    }
+
+    a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #c4b5fd;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Chingun's Fun Fact Generator</h1>
+  <p>Discover interesting facts and save the ones you like!</p>
+
+  <section>
+    <h2>Discover Something New</h2>
+
+    <button id="loadButton" onclick="loadFact()">
+      Get Random Fact
+    </button>
+
+    <span id="spinner" class="spinner"></span>
+
+    <p id="status">Ready to discover something interesting?</p>
+    <p id="error"></p>
+
+    <h2>Today's Discovery</h2>
+
+    <p id="factText">
+      Click the button above to discover a random fact!
+    </p>
+
+    <button id="saveButton" onclick="saveFavourite()" disabled>
+      Save Favourite
+    </button>
+  </section>
+
+  <section>
+    <h2>My Saved Facts</h2>
+    <p>Facts you have saved will appear here.</p>
+
+    <div id="favourites"></div>
+  </section>
+
+  <p>
+    <a href="index.html">← Back to Week 6</a>
+  </p>
+
+  <script>
+    let currentFact = null;
+
+    async function loadFact() {
+      let button = document.getElementById('loadButton');
+      let spinner = document.getElementById('spinner');
+
+      button.disabled = true;
+      document.getElementById('saveButton').disabled = true;
+
+      spinner.style.display = 'inline-block';
+
+      document.getElementById('status').textContent =
+        'Discovering a new fact...';
+
+      document.getElementById('error').textContent = '';
+      document.getElementById('factText').textContent = '';
+
+      currentFact = null;
+
+      try {
+        const res = await fetch(
+          'https://uselessfacts.jsph.pl/api/v2/facts/random?language=en'
+        );
+
+        if (!res.ok) {
+          throw new Error('Request failed');
+        }
+
+        const data = await res.json();
+
+        currentFact = data.text;
+
+        document.getElementById('factText').textContent =
+          data.text;
+
+        document.getElementById('status').textContent =
+          'New fact discovered!';
+
+        document.getElementById('saveButton').disabled = false;
+
+      } catch (err) {
+        document.getElementById('status').textContent = '';
+
+        document.getElementById('error').textContent =
+          'Could not load a fact. Please try again.';
+      } finally {
+        button.disabled = false;
+        spinner.style.display = 'none';
+      }
+    }
+
+    function saveFavourite() {
+      if (currentFact === null) {
+        return;
+      }
+
+      let favourites = JSON.parse(
+        localStorage.getItem('chingunFavoriteFacts') || '[]'
+      );
+
+      if (favourites.includes(currentFact)) {
+        document.getElementById('status').textContent =
+          'This fact is already saved!';
+        return;
+      }
+
+      favourites.push(currentFact);
+
+      localStorage.setItem(
+        'chingunFavoriteFacts',
+        JSON.stringify(favourites)
+      );
+
+      showFavourites();
+
+      document.getElementById('status').textContent =
+        'Fact added to your collection!';
+    }
+
+    function showFavourites() {
+      let favourites = JSON.parse(
+        localStorage.getItem('chingunFavoriteFacts') || '[]'
+      );
+
+      let list = document.getElementById('favourites');
+
+      list.textContent = '';
+
+      if (favourites.length === 0) {
+        list.textContent = 'No saved facts yet. Discover something new!';
+        list.className = 'empty-message';
+        return;
+      }
+
+      list.className = '';
+
+      for (let fact of favourites) {
+        let item = document.createElement('div');
+
+        item.className = 'favourite-item';
+        item.textContent = fact;
+
+        list.appendChild(item);
+      }
+    }
+
+    showFavourites();
+  </script>
+
+</body>
+</html>
