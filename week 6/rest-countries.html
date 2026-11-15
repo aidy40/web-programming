@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chingun's Car Database</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #151525;
+      color: #f1f1f1;
+      max-width: 700px;
+      margin: auto;
+      padding: 25px;
+    }
+
+    section {
+      background: #23233a;
+      padding: 20px;
+      margin-bottom: 18px;
+      border: 1px solid #393957;
+      border-radius: 12px;
+    }
+
+    h1, h2 {
+      color: #a78bfa;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 5px 4px 5px 0;
+      border-radius: 6px;
+    }
+
+    input {
+      width: 65%;
+      max-width: 350px;
+      background: #151525;
+      color: white;
+      border: 1px solid #555577;
+    }
+
+    button {
+      background: #7c3aed;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #6d28d9;
+      transform: translateY(-2px);
+    }
+
+    #status {
+      color: #c4b5fd;
+    }
+
+    .car-card {
+      background: #2e2e49;
+      border: 1px solid #454563;
+      border-radius: 8px;
+      padding: 14px;
+      margin: 10px 0;
+    }
+
+    .car-card h3 {
+      color: #c4b5fd;
+      margin-top: 0;
+    }
+
+    .detail {
+      border-bottom: 1px solid #454563;
+      padding: 8px 0;
+    }
+
+    a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #c4b5fd;
+      text-decoration: underline;
+    }
+
+    .car-icon {
+      font-size: 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Chingun's Car Database</h1>
+  <p>Explore automobile manufacturers and discover their car models.</p>
+
+  <section>
+    <h2>Search Cars</h2>
+
+    <input
+      type="text"
+      id="carInput"
+      value="Toyota"
+      placeholder="Enter manufacturer (e.g. BMW)"
+    >
+
+    <button onclick="searchCars()">Search</button>
+
+    <p id="status">Loading car information...</p>
+    <div id="results"></div>
+  </section>
+
+  <p>
+    <a href="index.html">← Back to Week 6</a>
+  </p>
+
+  <script>
+    async function searchCars() {
+      let name = document.getElementById('carInput').value.trim();
+      let status = document.getElementById('status');
+      let output = document.getElementById('results');
+
+      output.textContent = '';
+
+      if (name === '') {
+        status.textContent = 'Please enter a car manufacturer.';
+        return;
+      }
+
+      status.textContent = 'Searching for car models...';
+
+      try {
+        const res = await fetch(
+          'https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/' +
+          encodeURIComponent(name) + '?format=json'
+        );
+
+        if (!res.ok) {
+          throw new Error('Request failed');
+        }
+
+        let data = await res.json();
+
+        if (!data.Results || data.Results.length === 0) {
+          throw new Error('No cars found');
+        }
+
+        status.textContent =
+          data.Results.length + ' car model(s) found.';
+
+        let results = data.Results;
+
+        for (let car of results) {
+          let card = document.createElement('div');
+          card.className = 'car-card';
+
+          let icon = document.createElement('p');
+          icon.className = 'car-icon';
+          icon.textContent = '🚗';
+
+          let title = document.createElement('h3');
+          title.textContent = car.Model_Name;
+
+          let manufacturer = document.createElement('p');
+          manufacturer.className = 'detail';
+          manufacturer.textContent =
+            'Manufacturer: ' + car.Make_Name;
+
+          let modelId = document.createElement('p');
+          modelId.className = 'detail';
+          modelId.textContent =
+            'Model ID: ' + car.Model_ID;
+
+          card.appendChild(icon);
+          card.appendChild(title);
+          card.appendChild(manufacturer);
+          card.appendChild(modelId);
+
+          output.appendChild(card);
+        }
+
+      } catch (error) {
+        status.textContent =
+          'No car models found or the service is unavailable. Try another manufacturer.';
+      }
+    }
+
+    document.getElementById('carInput').addEventListener(
+      'keydown',
+      function(event) {
+        if (event.key === 'Enter') {
+          searchCars();
+        }
+      }
+    );
+
+    searchCars();
+  </script>
+
+</body>
+</html>
