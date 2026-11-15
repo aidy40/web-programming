@@ -1,61 +1,48 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chingun's Fun Fact Generator</title>
+  <title>Random Joke Fetcher</title>
 
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #151525;
-      color: #f1f1f1;
+      background-color: #f5f5f5;
+      color: #1e293b;
       max-width: 700px;
       margin: auto;
       padding: 30px;
     }
 
     section {
-      background: #23233a;
-      padding: 22px;
+      background-color: white;
+      padding: 20px;
       margin-bottom: 20px;
-      border: 1px solid #393957;
-      border-radius: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
     }
 
     h1, h2 {
-      color: #a78bfa;
+      color: #0f766e;
     }
 
     button {
-      padding: 11px 16px;
+      padding: 8px 12px;
       margin: 5px 5px 5px 0;
-      background: #7c3aed;
-      color: white;
-      border: none;
-      border-radius: 6px;
       cursor: pointer;
-      transition: 0.2s;
-    }
-
-    button:hover {
-      background: #6d28d9;
-      transform: translateY(-2px);
     }
 
     button:disabled {
-      background: #555577;
       cursor: not-allowed;
-      transform: none;
     }
 
     .spinner {
       display: none;
       width: 20px;
       height: 20px;
-      border: 3px solid #393957;
-      border-top: 3px solid #a78bfa;
+      border: 3px solid #ddd;
+      border-top: 3px solid #0f766e;
       border-radius: 50%;
       animation: spin 1s linear infinite;
       vertical-align: middle;
@@ -67,68 +54,28 @@
       }
     }
 
-    #factText {
-      font-size: 19px;
-      line-height: 1.6;
-      color: #e9d5ff;
-      background: #2e2e49;
-      padding: 18px;
-      border-radius: 8px;
-      min-height: 50px;
-    }
-
-    #status {
-      color: #c4b5fd;
-    }
-
     #error {
-      color: #f87171;
-    }
-
-    .favourite-item {
-      border-bottom: 1px solid #454563;
-      padding: 12px 0;
-      line-height: 1.5;
-    }
-
-    .empty-message {
-      color: #aaa;
-    }
-
-    a {
-      color: #a78bfa;
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: #c4b5fd;
-      text-decoration: underline;
+      color: #dc2626;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>Chingun's Fun Fact Generator</h1>
-  <p>Discover interesting facts and save the ones you like!</p>
+  <h1>Random Joke Fetcher</h1>
 
   <section>
-    <h2>Discover Something New</h2>
-
-    <button id="loadButton" onclick="loadFact()">
-      Get Random Fact
-    </button>
-
+    <button id="loadButton" onclick="loadJoke()">Load Joke</button>
     <span id="spinner" class="spinner"></span>
 
-    <p id="status">Ready to discover something interesting?</p>
+    <p id="status"></p>
     <p id="error"></p>
 
-    <h2>Today's Discovery</h2>
+    <h2>Setup</h2>
+    <p id="jokeSetup">Click Load Joke to get a joke.</p>
 
-    <p id="factText">
-      Click the button above to discover a random fact!
-    </p>
+    <h2>Punchline</h2>
+    <p id="jokePunch"></p>
 
     <button id="saveButton" onclick="saveFavourite()" disabled>
       Save Favourite
@@ -136,39 +83,29 @@
   </section>
 
   <section>
-    <h2>My Saved Facts</h2>
-    <p>Facts you have saved will appear here.</p>
-
+    <h2>Favourite Jokes</h2>
     <div id="favourites"></div>
   </section>
 
-  <p>
-    <a href="index.html">← Back to Week 6</a>
-  </p>
-
   <script>
-    let currentFact = null;
+    let currentJoke = null;
 
-    async function loadFact() {
+    async function loadJoke() {
       let button = document.getElementById('loadButton');
       let spinner = document.getElementById('spinner');
 
       button.disabled = true;
       document.getElementById('saveButton').disabled = true;
-
       spinner.style.display = 'inline-block';
-
-      document.getElementById('status').textContent =
-        'Discovering a new fact...';
-
+      document.getElementById('status').textContent = 'Loading…';
       document.getElementById('error').textContent = '';
-      document.getElementById('factText').textContent = '';
-
-      currentFact = null;
+      document.getElementById('jokeSetup').textContent = '';
+      document.getElementById('jokePunch').textContent = '';
+      currentJoke = null;
 
       try {
         const res = await fetch(
-          'https://uselessfacts.jsph.pl/api/v2/facts/random?language=en'
+          'https://official-joke-api.appspot.com/random_joke'
         );
 
         if (!res.ok) {
@@ -177,21 +114,20 @@
 
         const data = await res.json();
 
-        currentFact = data.text;
+        currentJoke = {
+          setup: data.setup,
+          punchline: data.punchline
+        };
 
-        document.getElementById('factText').textContent =
-          data.text;
-
-        document.getElementById('status').textContent =
-          'New fact discovered!';
-
+        document.getElementById('jokeSetup').textContent = data.setup;
+        document.getElementById('jokePunch').textContent = data.punchline;
+        document.getElementById('status').textContent = 'Joke loaded!';
         document.getElementById('saveButton').disabled = false;
 
       } catch (err) {
         document.getElementById('status').textContent = '';
-
         document.getElementById('error').textContent =
-          'Could not load a fact. Please try again.';
+          'Sorry, the joke could not be loaded. Please try again.';
       } finally {
         button.disabled = false;
         spinner.style.display = 'none';
@@ -199,55 +135,46 @@
     }
 
     function saveFavourite() {
-      if (currentFact === null) {
+      if (currentJoke === null) {
         return;
       }
 
       let favourites = JSON.parse(
-        localStorage.getItem('chingunFavoriteFacts') || '[]'
+        localStorage.getItem('favoriteJokes') || '[]'
       );
 
-      if (favourites.includes(currentFact)) {
-        document.getElementById('status').textContent =
-          'This fact is already saved!';
-        return;
-      }
+      favourites.push(currentJoke);
 
-      favourites.push(currentFact);
-
-      localStorage.setItem(
-        'chingunFavoriteFacts',
-        JSON.stringify(favourites)
-      );
+      localStorage.setItem('favoriteJokes', JSON.stringify(favourites));
 
       showFavourites();
-
-      document.getElementById('status').textContent =
-        'Fact added to your collection!';
+      document.getElementById('status').textContent = 'Favourite saved!';
     }
 
     function showFavourites() {
       let favourites = JSON.parse(
-        localStorage.getItem('chingunFavoriteFacts') || '[]'
+        localStorage.getItem('favoriteJokes') || '[]'
       );
 
       let list = document.getElementById('favourites');
-
       list.textContent = '';
 
       if (favourites.length === 0) {
-        list.textContent = 'No saved facts yet. Discover something new!';
-        list.className = 'empty-message';
-        return;
+        list.textContent = 'No favourite jokes saved yet.';
       }
 
-      list.className = '';
-
-      for (let fact of favourites) {
+      for (let joke of favourites) {
         let item = document.createElement('div');
+        let setup = document.createElement('p');
+        let punchline = document.createElement('p');
 
-        item.className = 'favourite-item';
-        item.textContent = fact;
+        setup.textContent = joke.setup;
+        punchline.textContent = joke.punchline;
+
+        item.appendChild(setup);
+        item.appendChild(punchline);
+        item.style.borderBottom = '1px solid #ddd';
+        item.style.padding = '10px 0';
 
         list.appendChild(item);
       }
