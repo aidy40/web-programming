@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manga Library - Member Login</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #151525;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 30px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      background-color: #23233a;
+      border: 1px solid #393957;
+      border-radius: 14px;
+      padding: 35px;
+      width: 100%;
+      max-width: 380px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      color: #c4b5fd;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      color: #aaaac2;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #ddd6fe;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      background-color: #151525;
+      border: 1px solid #393957;
+      border-radius: 8px;
+      color: white;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #7c3aed;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 22px;
+      color: #aaaac2;
+    }
+
+    .remember label {
+      margin: 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      background-color: #7c3aed;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #6d28d9;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-container">
+
+    <h1>Manga Library</h1>
+    <p class="description">Welcome back! Sign in to continue.</p>
+
+    <form method="post" action="/login">
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email"
+             placeholder="Enter your email" required>
+
+      <label for="pw">Your Password</label>
+      <input type="password" id="pw" name="password"
+             placeholder="Enter your password" required>
+
+      <div class="remember">
+        <input type="checkbox" id="remember" name="remember">
+        <label for="remember">Keep me signed in</label>
+      </div>
+
+      <button type="submit">Login to Library</button>
+
+    </form>
+
+  </div>
+
+</body>
+</html>
