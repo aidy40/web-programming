@@ -1,0 +1,444 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manga Library - Member Registration</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #151525;
+      color: #f1f1f1;
+      max-width: 700px;
+      margin: auto;
+      padding: 25px;
+    }
+
+    h1 {
+      color: #c4b5fd;
+      text-align: center;
+    }
+
+    .subtitle {
+      color: #aaaac2;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    fieldset {
+      background-color: #23233a;
+      border: 1px solid #393957;
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+
+    legend {
+      color: #c4b5fd;
+      font-weight: bold;
+      padding: 0 10px;
+    }
+
+    label {
+      display: block;
+      margin: 14px 0 6px;
+      color: #ddd6fe;
+    }
+
+    input:not([type="checkbox"]):not([type="range"]),
+    select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 11px;
+      border: 1px solid #393957;
+      border-radius: 8px;
+      font: inherit;
+      background-color: #151525;
+      color: white;
+    }
+
+    input:focus,
+    select:focus {
+      outline: 2px solid #7c3aed;
+      border-color: #a78bfa;
+    }
+
+    input:valid:not(:placeholder-shown),
+    select:valid {
+      border-color: #22c55e;
+    }
+
+    input:invalid:not(:placeholder-shown),
+    select:invalid {
+      border-color: #ef4444;
+    }
+
+    input[type="checkbox"],
+    input[type="range"] {
+      accent-color: #7c3aed;
+    }
+
+    .help {
+      display: block;
+      color: #aaaac2;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    .error {
+      display: block;
+      color: #f87171;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    .terms {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 15px 0;
+    }
+
+    .terms label {
+      margin: 0;
+    }
+
+    button {
+      padding: 12px 20px;
+      width: 100%;
+      background-color: #7c3aed;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover:not(:disabled) {
+      background-color: #6d28d9;
+    }
+
+    button:disabled {
+      background-color: #55556b;
+      cursor: not-allowed;
+    }
+
+    #experience-value {
+      color: #c4b5fd;
+      font-weight: bold;
+    }
+
+    #success-message {
+      margin-top: 15px;
+      padding: 12px;
+      background-color: #18352b;
+      color: #86efac;
+      border: 1px solid #22c55e;
+      border-radius: 8px;
+    }
+
+    a {
+      color: #a78bfa;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Manga Library Registration</h1>
+  <p class="subtitle">Create your member account and start exploring manga.</p>
+
+  <form id="registration-form" action="#" method="post" novalidate>
+
+    <fieldset>
+      <legend>Member Details</legend>
+
+      <label for="full-name">Full Name</label>
+      <input
+        type="text"
+        id="full-name"
+        name="fullName"
+        placeholder="Enter your name"
+        aria-describedby="full-name-help full-name-error"
+        aria-invalid="false"
+        required
+      >
+      <small id="full-name-help" class="help">Enter your complete name.</small>
+      <small id="full-name-error" class="error"></small>
+
+      <label for="student-id">Member ID</label>
+      <input
+        type="text"
+        id="student-id"
+        name="studentId"
+        pattern="[0-9]{8}"
+        placeholder="8-digit member ID"
+        title="Enter exactly 8 digits"
+        aria-describedby="student-id-help student-id-error"
+        aria-invalid="false"
+        required
+      >
+      <small id="student-id-help" class="help">Enter exactly 8 digits.</small>
+      <small id="student-id-error" class="error"></small>
+
+      <label for="birth-date">Birthday</label>
+      <input
+        type="date"
+        id="birth-date"
+        name="dateOfBirth"
+        aria-describedby="birth-date-help birth-date-error"
+        aria-invalid="false"
+        required
+      >
+      <small id="birth-date-help" class="help">Select your date of birth.</small>
+      <small id="birth-date-error" class="error"></small>
+
+      <label for="favorite-genre">Favorite Manga Genre</label>
+      <select
+        id="favorite-genre"
+        name="favoriteGenre"
+        aria-describedby="favorite-genre-help favorite-genre-error"
+        aria-invalid="false"
+        required
+      >
+        <option value="" selected disabled>Select a genre</option>
+        <option value="Action">Action</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Romance">Romance</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Mystery">Mystery</option>
+      </select>
+      <small id="favorite-genre-help" class="help">Choose your favorite genre.</small>
+      <small id="favorite-genre-error" class="error"></small>
+
+      <label for="reading-experience">Years of Reading Manga</label>
+      <input
+        type="range"
+        id="reading-experience"
+        name="readingExperience"
+        min="0"
+        max="15"
+        value="0"
+        aria-describedby="experience-value"
+      >
+      <span id="experience-value">0 years</span>
+    </fieldset>
+
+    <fieldset>
+      <legend>Account Information</legend>
+
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="reader@example.com"
+        aria-describedby="email-help email-error"
+        aria-invalid="false"
+        required
+      >
+      <small id="email-help" class="help">Enter a valid email address.</small>
+      <small id="email-error" class="error"></small>
+
+      <label for="password">Create Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        minlength="8"
+        placeholder="At least 8 characters"
+        aria-describedby="password-help password-error"
+        aria-invalid="false"
+        required
+      >
+      <small id="password-help" class="help">Use at least 8 characters.</small>
+      <small id="password-error" class="error"></small>
+
+      <label for="confirm-password">Confirm Password</label>
+      <input
+        type="password"
+        id="confirm-password"
+        name="confirmPassword"
+        placeholder="Enter your password again"
+        aria-describedby="confirm-password-help confirm-password-error"
+        aria-invalid="false"
+        required
+      >
+      <small id="confirm-password-help" class="help">Enter the same password again.</small>
+      <small id="confirm-password-error" class="error"></small>
+
+      <label for="phone">Phone Number</label>
+      <input
+        type="text"
+        id="phone"
+        name="phone"
+        pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+        placeholder="010-1234-5678"
+        title="Use the format 010-1234-5678"
+        aria-describedby="phone-help phone-error"
+        aria-invalid="false"
+      >
+      <small id="phone-help" class="help">Optional. Format: 010-1234-5678.</small>
+      <small id="phone-error" class="error"></small>
+    </fieldset>
+
+    <div class="terms">
+      <input
+        type="checkbox"
+        id="terms"
+        name="terms"
+        aria-invalid="false"
+        required
+      >
+      <label for="terms">I agree to the membership terms</label>
+    </div>
+    <small id="terms-error" class="error"></small>
+
+    <button type="submit" id="register-button" disabled>
+      Create My Account
+    </button>
+
+    <div id="success-message" role="status" aria-live="polite" hidden></div>
+
+  </form>
+
+  <p><a href="index.html">Back to Week 8</a></p>
+
+  <script>
+    const form = document.getElementById('registration-form');
+    const registerButton = document.getElementById('register-button');
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirm-password');
+    const experience = document.getElementById('reading-experience');
+    const experienceValue = document.getElementById('experience-value');
+    const successMessage = document.getElementById('success-message');
+
+    const fields = form.querySelectorAll('input, select');
+    const touched = new Set();
+
+    function updatePassword() {
+      if (confirmPassword.value !== '' &&
+          confirmPassword.value !== password.value) {
+        confirmPassword.setCustomValidity('Passwords do not match.');
+      } else {
+        confirmPassword.setCustomValidity('');
+      }
+    }
+
+    function getError(field) {
+      if (field.validity.valueMissing) {
+        return 'This field is required.';
+      }
+
+      if (field.validity.typeMismatch) {
+        return 'Enter a valid email address.';
+      }
+
+      if (field.validity.patternMismatch && field.id === 'student-id') {
+        return 'Member ID must contain exactly 8 digits.';
+      }
+
+      if (field.validity.patternMismatch && field.id === 'phone') {
+        return 'Use the format 010-1234-5678.';
+      }
+
+      if (field.validity.tooShort) {
+        return 'Password must contain at least 8 characters.';
+      }
+
+      if (field.validity.customError) {
+        return field.validationMessage;
+      }
+
+      return '';
+    }
+
+    function validateForm(changedField) {
+      updatePassword();
+
+      if (changedField) {
+        touched.add(changedField.id);
+      }
+
+      if (changedField === password && confirmPassword.value !== '') {
+        touched.add(confirmPassword.id);
+      }
+
+      for (let field of fields) {
+        if (touched.has(field.id)) {
+          const valid = field.validity.valid;
+          field.setAttribute('aria-invalid', String(!valid));
+
+          const error = document.getElementById(field.id + '-error');
+
+          if (error) {
+            error.textContent = valid ? '' : getError(field);
+          }
+        }
+      }
+
+      const termsError = document.getElementById('terms-error');
+      if (touched.has('terms')) {
+        termsError.textContent = form.elements.terms.validity.valid
+          ? ''
+          : 'You must agree to the membership terms.';
+      }
+
+      registerButton.disabled = !form.checkValidity();
+      successMessage.hidden = true;
+      successMessage.textContent = '';
+    }
+
+    for (let field of fields) {
+      field.addEventListener('input', function() {
+        validateForm(field);
+
+        if (field === experience) {
+          experienceValue.textContent = experience.value + ' years';
+        }
+      });
+
+      field.addEventListener('change', function() {
+        validateForm(field);
+      });
+    }
+
+    form.elements.terms.addEventListener('change', function() {
+      touched.add('terms');
+      validateForm();
+    });
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      updatePassword();
+
+      if (!form.checkValidity()) {
+        for (let field of fields) {
+          touched.add(field.id);
+        }
+
+        touched.add('terms');
+        validateForm();
+        return;
+      }
+
+      successMessage.textContent =
+        'Registration successful! Your Manga Library form is valid. No registration server is connected.';
+      successMessage.hidden = false;
+    });
+
+    validateForm();
+  </script>
+
+</body>
+</html>
